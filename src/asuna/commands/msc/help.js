@@ -27,7 +27,7 @@ class Help extends Command {
         })
         
         let helpembed = new this.Embed()
-                .setTitle("list of commands")
+                .setTitle("List of commands")
                 .setColor('#FE55FE')
                 .addField("Images", commands.img.join(', '), true)
                 .addField("Nsfw", `${message.channel.nsfw ? commands.nsfw.join(', ') : 'Please run in a NSFW channel to view these commands'}`, true)
