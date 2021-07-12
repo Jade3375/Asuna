@@ -12,8 +12,9 @@
   "dependencies": {
     "canvas": "^2.8.0",
     "dotenv": "^8.2.0",
-    "eris": "^0.13.4",
+    "eris": "github:Jade3375/eris#dev",
     "eris-additions": "^1.4.1",
+    "eris-fleet": "github:Jade3375/eris-fleet-mod",
     "erlpack": "github:abalabahaha/erlpack",
     "eventemitter3": "^4.0.4",
     "lavaclient": "^3.0.8",
