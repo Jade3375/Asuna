@@ -15,8 +15,6 @@ module.exports = class {
 
         let welcomemsg = server.data.welcomeMessage.replace("{server}", guild.name).replace("{atuser}", `<@${member.id}>`)
 
-        console.log(welcomemsg)
-
         switch (members.substr(-1)) {
             case "1":
                 members = "st"
@@ -43,9 +41,11 @@ module.exports = class {
         const canvas = createCanvas(500,200)
         const ctx = canvas.getContext('2d');
 
-        loadImage("https://cdn.discordapp.com/attachments/704345807033204776/859900187745321030/trees.png").then(image => {
+        //ToDo: replace image url with image url / path from DB
+        loadImage(server.data.welcomeImage).then(image => {
             ctx.drawImage(image, 0,0)
 
+            //
             ctx.font = 'bold 24px "Helvet"'
             ctx.fillStyle = "white"
             ctx.fillText(`Welcome ${member.username}!`, 160, 85)
