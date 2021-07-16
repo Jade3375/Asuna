@@ -36,9 +36,9 @@ class Command {
      * @returns {Boolean} true if permission is present
      */
     checkPerm(UID, message, permission) {
-        if (message.channel.guild.members.get(UID).permission.json.administrator == true) return true
+        if (message.channel.guild.members.get(UID).permissions.json.administrator == true) return true
 
-        return message.member.guild.members.get(UID).permission.json[permission]
+        return message.member.guild.members.get(UID).permissions.json[permission]
     }
 
     /**
