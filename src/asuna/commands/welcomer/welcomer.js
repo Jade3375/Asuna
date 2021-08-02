@@ -24,8 +24,6 @@ module.exports = class extends Command {
         let guild = row.data
         let embed = new this.Embed();
 
-
-
         switch (args[0]) {
             case "image":
                 if(!args[1] && !message.attachments[0]) return message.channel.createMessage("please provide an image to use or select one of the existing images (500x200px)")
@@ -41,7 +39,8 @@ module.exports = class extends Command {
             break;
             case "welcomemessage":
                 if(!args[1]) return message.channel.createMessage("please provide text for the welcome message, \n{server} = server name \n {username} = members name \n {atuser} = the users @ \n{joinpos} = join position")
-                guild.welcomeMessage = message.content.split("msg")[1]
+                guild.welcomeMessage = message.content.split("welcomemessage ")[1]
+                console.log(message.content.split("welcomemessage "))
                 message.channel.createMessage(`welcome message set!`)
             break;
             case "channel":
@@ -78,13 +77,12 @@ module.exports = class extends Command {
         }
 
         if(args[0] == "test") return
-        else this.client.db.editRow("server", message.guildID, {welcomeChannel: guild.welcomeChannel, welcomeMessage: guild.welcomeMessage, welcomeToggle: guild.welcomeToggle, welcomeImage: guild.welcomeImage, welcomeColor: guild.welcomeColor || white})
+        else this.client.db.editRow("server", message.guildID, {welcomeChannel: guild.welcomeChannel, welcomeMessage: guild.welcomeMessage, welcomeToggle: guild.welcomeToggle, welcomeImage: guild.welcomeImage, welcomeColor: guild.welcomeColor || "white"})
 
     }
 
     async test(guild, member) {
         let server = await this.client.db.getRow("server", guild.id)
-        console.log(server.data)
         if(!server.data || server.data == null) return
         if(server.data.welcomeToggle == false) return
         let channel = await guild.channels.get(server.data.welcomeChannel)
@@ -124,7 +122,7 @@ module.exports = class extends Command {
 
             //
             ctx.font = 'bold 24px "Helvet"'
-            ctx.fillStyle = "#ef42f5"
+            ctx.fillStyle = server.data.welcomeColor
             ctx.fillText(`Welcome ${member.username}!`, 160, 85)
 
             ctx.font = 'medium 24px "Helvet"'
@@ -134,7 +132,7 @@ module.exports = class extends Command {
             ctx.arc(100, 100, 48, 0, Math.PI * 2);
             ctx.clip();
 
-            ctx.fillStyle = '#ef42f5';
+            ctx.fillStyle = server.data.welcomeColor;
             ctx.fillRect(0, 0, 500,200)
 
             ctx.beginPath();

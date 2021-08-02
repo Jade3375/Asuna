@@ -47,7 +47,7 @@ module.exports = class {
 
             //
             ctx.font = 'bold 24px "Helvet"'
-            ctx.fillStyle = "white"
+            ctx.fillStyle = server.data.welcomeColor
             ctx.fillText(`Welcome ${member.username}!`, 160, 85)
 
             ctx.font = 'medium 24px "Helvet"'
@@ -57,7 +57,7 @@ module.exports = class {
             ctx.arc(100, 100, 48, 0, Math.PI * 2);
             ctx.clip();
 
-            ctx.fillStyle = 'white';
+            ctx.fillStyle = server.data.welcomeColor;
             ctx.fillRect(0, 0, 500,200)
 
             ctx.beginPath();
