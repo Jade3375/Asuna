@@ -9,9 +9,11 @@ module.exports = class {
             if(!user.bot == true) stop = true
         });
 
+        let guildID = channel.guild.id
+
+        if(member.id == this.client.user.id) return this.client.musicManager.player.DisconnectPlayer(guildID);
         if(stop) return
 
-        let guildID = channel.guild.id
         if(!this.client.musicManager.player.CheckPlayer(guildID)) return
         let player = this.client.musicManager.player.getPlayer(guildID)
         if(!player._connected) return
