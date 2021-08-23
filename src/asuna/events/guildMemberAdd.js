@@ -7,13 +7,12 @@ module.exports = class {
     async run (guild, member) {
         if(!member) return;
         let server = await this.client.db.getRow("server", guild.id)
-        console.log(server.data)
         if(!server.data || server.data == null) return
         if(server.data.welcomeToggle == false) return
         let channel = await guild.channels.get(server.data.welcomeChannel)
         let members = guild.memberCount + ""
 
-        let welcomemsg = server.data.welcomeMessage.replace("{server}", guild.name).replace("{atuser}", `<@${member.id}>`)
+        let welcomemsg = server.data.welcomeMessage.replace("{server}", guild.name).replace("{atuser}", `<@${member.id}>`).replace("{username}", member.username).replace("{joinpos}", guild.memberCount)
 
         switch (members.substr(-1)) {
             case "1":
@@ -47,7 +46,7 @@ module.exports = class {
 
             //
             ctx.font = 'bold 24px "Helvet"'
-            ctx.fillStyle = server.data.welcomeColor
+            ctx.fillStyle = server.data.welcomeColor | "white"
             ctx.fillText(`Welcome ${member.username}!`, 160, 85)
 
             ctx.font = 'medium 24px "Helvet"'
@@ -57,7 +56,7 @@ module.exports = class {
             ctx.arc(100, 100, 48, 0, Math.PI * 2);
             ctx.clip();
 
-            ctx.fillStyle = server.data.welcomeColor;
+            ctx.fillStyle = server.data.welcomeColor | "white";
             ctx.fillRect(0, 0, 500,200)
 
             ctx.beginPath();
