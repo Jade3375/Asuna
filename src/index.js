@@ -24,7 +24,7 @@ const options = {
     startingStatus: {
         status: "online", 
         game: {
-            name:"%help | music revamp",
+            name:"%help | Welcome messages!",
             type:2,
             url:null
         }
