@@ -18,7 +18,8 @@ class Help extends Command {
             msc: [],
             nsfw: [],
             music: [],
-            mod: []
+            mod: [],
+            welcomer: []
         }
     
         this.client.commands.forEach(c => {
@@ -35,6 +36,7 @@ class Help extends Command {
                 .addField("Moderator", commands.mod.join(', '), true)
                 .addField("Music", commands.music.join(', '), true)
                 .addField("Fun", commands.fun.join(', '), true)
+                .addField("welcome" , commands.welcomer.join(', '), true)
                 .addField("Links", "<:PPtransparent:457295151396814848>   [donate](https://www.paypal.me/FloodL) \n:link:   [bot invite](https://discord.com/oauth2/authorize?client_id=420907324945989632&permissions=2146824183&scope=bot%20applications.commands) \n:link:   [support server](https://discord.gg/uyEQkTT ) \n:link:   [vote](https://top.gg/bot/420907324945989632/vote) \n:link: [guilded](https://www.guilded.gg/i/3kgGxPok)")
                 this.client.globalEmbedData(helpembed)
 
