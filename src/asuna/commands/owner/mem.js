@@ -16,8 +16,8 @@ module.exports = class extends Command {
         mem.rss = Math.round(mem.rss / 1024 / 1024 * 100) / 100
         mem.heapTotal = Math.round(mem.heapTotal / 1024 / 1024 * 100) / 100
         mem.heapUsed = Math.round(mem.heapUsed / 1024 / 1024 * 100) / 100
-        delete mem.arrayBuffers
-        delete mem.external
+        mem.arrayBuffers = Math.round(mem.arrayBuffers / 1024 / 1024 * 100) / 100
+        mem.external = Math.round(mem.external / 1024 / 1024 * 100) / 100
 
         mem = require("util").inspect(mem, {
             depth: 0
