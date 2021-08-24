@@ -16,7 +16,8 @@ module.exports = class extends Command {
         if (!owners.includes(message.author.id)) return;
 
         
-        message.channel.createMessage("reloaded commands")
+        message.channel.createMessage("reloaded commands and events")
+        this.client.load.cmds()
         this.client.load.cmds()
     }
 }
