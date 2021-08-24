@@ -14,7 +14,7 @@ class Asuna extends BaseClusterWorker {
     constructor(setup){
         super(setup)
         this.bot.ipc = this.ipc
-        this.bot.game = {name:"%help | music revamp",type:2}
+        this.bot.game = {name:"%help | Welcome Messages!",type:2}
         this.bot.status = "online"
         this.bot.weeb = new weebs();
         this.bot.db = new dbManager(this.bot);
