@@ -11,6 +11,7 @@ class DB {
         this.database = process.env.DB;
         this.username = process.env.USR;
         this.password = process.env.DBPWD;
+        this.ready = false;
         this.URI = `mongodb://${this.username ? `${this.username}:${this.password}@` : ''}${this.host}:${this.port}`
         this.db = new MongoClient(this.URI, {
             useUnifiedTopology: true
@@ -18,6 +19,7 @@ class DB {
         await this.db.connect();
         this.db = this.db.db(this.database);
         console.log(`[DB] Connnected`)
+        this.ready = true
         return this.db;
     }
 
