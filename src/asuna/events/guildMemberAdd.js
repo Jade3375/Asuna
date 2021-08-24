@@ -5,6 +5,7 @@ module.exports = class {
     }
 
     async run (guild, member) {
+        this.client.users.clear()
         if(!member) return;
         let server = await this.client.db.getRow("server", guild.id)
         if(!server.data || server.data == null) return
@@ -31,14 +32,14 @@ module.exports = class {
                 break;
         }
 
-        const { createCanvas, loadImage, registerFont } = require('canvas')
-        const fs = require('fs')
+        let { createCanvas, loadImage, registerFont } = require('canvas')
+        let fs = require('fs')
 
         registerFont(__dirname + '/../fonts/Helvetica_Bold.ttf', {family: "Helvet", weight: "bold"})
         registerFont(__dirname + '/../fonts/Helvetica_Medium.ttf', {family: "Helvet", weight: "medium"})
 
-        const canvas = createCanvas(500,200)
-        const ctx = canvas.getContext('2d');
+        let canvas = createCanvas(500,200)
+        let ctx = canvas.getContext('2d');
 
         //ToDo: replace image url with image url / path from DB
         loadImage(server.data.welcomeImage).then(image => {
@@ -65,12 +66,11 @@ module.exports = class {
 
             loadImage(member.avatarURL).then(image => {
                 ctx.drawImage(image, 54, 54, 92, 92)
-                const buffer = canvas.toBuffer("image/png")
-                channel.createMessage(welcomemsg , {file: buffer, name: "welcome.png"})
+                //let buffer = canvas.toBuffer("image/png")
+                channel.createMessage(welcomemsg , {file: canvas.toBuffer("image/png"), name: "welcome.png"})
             })
 
         })
-
 
     }
 }
