@@ -4,6 +4,8 @@ const path = require("path")
 class Functions {
     constructor(Client) {
         this.Client = Client
+
+        this.loadCommands()
     }
 
     _loadCommand = (commandPath, commandName, folder) => {

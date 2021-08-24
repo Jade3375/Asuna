@@ -1,5 +1,5 @@
 const { BaseClusterWorker } = require('eris-fleet');
-const test = require('./functions/setup/');
+const setup = require('./functions/setup/');
 const dbManager = require('./utils/dbManager');
 const Manager = require("./functions/lavalink");
 const MusicManager = require('./music/playerManager/index');
@@ -38,8 +38,7 @@ class Asuna extends BaseClusterWorker {
 
     async startBot() {
         this.bot.db.connect()
-        this.bot.load = new test(this.bot)
-        this.bot.load.func()
+        this.bot.load = new setup(this.bot)
         this.bot.lavalink.load()
         this.bot.editStatus(this.bot.status, this.bot.game)
     }

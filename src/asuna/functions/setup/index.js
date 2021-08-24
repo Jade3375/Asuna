@@ -8,13 +8,12 @@ module.exports = class {
         this.event = new loadEvents(this.client);
     }
 
-
-    async func() {
-        this.cmd.loadCommands()
-    }
-    
     async cmds() {
         this.cmd.loadCommands()
+    }
+
+    async events() {
+        this.event.loadEvents()
     }
 }
 
