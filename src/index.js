@@ -12,6 +12,7 @@ const options = {
     token: dev ? process.env.BETA_TOKEN : process.env.TOKEN,
     clusters: 1,
     shards: dev ? 1 : 6,
+    clientOptions: {intents: ["guilds", "guildMembers", "guildVoiceStates", "guildMessages", "directMessages"]},
     whatToLog: {
         whitelist: ['admiral_start', 'cluster_start', 'cluster_ready', 'shard_connect', 'shard_ready', 'shard_disconnect', 'shard_resume', 'cluster_restart', 'cluster_shutdown', 'total_shutdown', 'all_clusters_launched']
     },
