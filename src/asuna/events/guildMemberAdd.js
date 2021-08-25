@@ -1,3 +1,5 @@
+const { createCanvas, loadImage, registerFont } = require('canvas')
+const fs = require('fs')
 
 module.exports = class {
     constructor (client) {
@@ -36,9 +38,6 @@ module.exports = class {
                 members = "th"
                 break;
         }
-
-        let { createCanvas, loadImage, registerFont } = require('canvas')
-        let fs = require('fs')
 
         registerFont(__dirname + '/../fonts/Helvetica_Bold.ttf', {family: "Helvet", weight: "bold"})
         registerFont(__dirname + '/../fonts/Helvetica_Medium.ttf', {family: "Helvet", weight: "medium"})
