@@ -18,6 +18,7 @@ module.exports = class {
 
     async welcome (guild, member, server) {
         this.client.welcomes ++
+        console.log(`[   Welcome   ] ${guild.id}`)
         let channel = await guild.channels.get(server.data.welcomeChannel)
         let members = guild.memberCount + ""
 
