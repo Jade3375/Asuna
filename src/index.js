@@ -12,7 +12,6 @@ const options = {
     token: dev ? process.env.BETA_TOKEN : process.env.TOKEN,
     clusters: 1,
     shards: dev ? 1 : 6,
-    clientOptions: {intents: ["guilds", "guildMembers", "guildVoiceStates", "guildMessages", "directMessages"]},
     whatToLog: {
         whitelist: ['admiral_start', 'cluster_start', 'cluster_ready', 'shard_connect', 'shard_ready', 'shard_disconnect', 'shard_resume', 'cluster_restart', 'cluster_shutdown', 'total_shutdown', 'all_clusters_launched']
     },
@@ -20,7 +19,8 @@ const options = {
         disableEvents: {"TYPING_START": false, "PRESENCE_UPDATE": false},
         messageLimit: 1,
         guildSubscriptions: false,
-        largeThreshold: 50
+        largeThreshold: 50,
+        intents: ["guilds", "guildMembers", "guildVoiceStates", "guildMessages", "directMessages"]
     },
     startingStatus: {
         status: "online", 
