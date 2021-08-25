@@ -45,35 +45,33 @@ module.exports = class {
         let canvas = createCanvas(500,200)
         let ctx = canvas.getContext('2d');
 
-        //ToDo: replace image url with image url / path from DB
-        loadImage(server.data.welcomeImage).then(image => {
-            ctx.drawImage(image, 0,0)
+        let image = await loadImage(server.data.welcomeImage)
+        ctx.drawImage(image, 0,0)
 
-            //
-            ctx.font = 'bold 24px "Helvet"'
-            ctx.fillStyle = server.data.welcomeColor | "white"
-            ctx.fillText(`Welcome ${member.username}!`, 160, 85)
+            
+        ctx.font = 'bold 24px "Helvet"'
+        ctx.fillStyle = server.data.welcomeColor | "white"
+        ctx.fillText(`Welcome ${member.username}!`, 160, 85)
 
-            ctx.font = 'medium 24px "Helvet"'
-            ctx.fillText(`you are the ${guild.memberCount}${members} member!`, 160, 115)
+        ctx.font = 'medium 24px "Helvet"'
+        ctx.fillText(`you are the ${guild.memberCount}${members} member!`, 160, 115)
 
-            ctx.beginPath();
-            ctx.arc(100, 100, 48, 0, Math.PI * 2);
-            ctx.clip();
+        ctx.beginPath();
+        ctx.arc(100, 100, 48, 0, Math.PI * 2);
+        ctx.clip();
 
-            ctx.fillStyle = server.data.welcomeColor | "white";
-            ctx.fillRect(0, 0, 500,200)
+        ctx.fillStyle = server.data.welcomeColor | "white";
+        ctx.fillRect(0, 0, 500,200)
 
-            ctx.beginPath();
-            ctx.arc(100, 100, 46, 0, Math.PI * 2);
-            ctx.clip();
+        ctx.beginPath();
+        ctx.arc(100, 100, 46, 0, Math.PI * 2);
+        ctx.clip();
 
-            loadImage(member.avatarURL).then(image => {
-                ctx.drawImage(image, 54, 54, 92, 92)
-                //let buffer = canvas.toBuffer("image/png")
-                channel.createMessage(welcomemsg , {file: canvas.toBuffer("image/png"), name: "welcome.png"})
-            })
-
-        })
+        image = await loadImage(member.avatarURL)
+        ctx.drawImage(image, 54, 54, 92, 92)
+        channel.createMessage(welcomemsg , {file: canvas.toBuffer("image/png"), name: "welcome.png"})
+        canvas = null
+        ctx = null
+        image = null
     }
 }
