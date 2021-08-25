@@ -7,8 +7,8 @@ module.exports = class {
         if (message.author.bot) return;
         if(this.client.db.ready == false) return;
 
-        let prefix =  "b!"
-        //let prefix = await this.client.pf.getPrefix(message.guildID)
+        //let prefix =  "b!"
+        let prefix = await this.client.pf.getPrefix(message.guildID)
         
         let args = await message.content.slice(prefix.length).trim().split(' ');
         let temp = message.content.trim().split(' ');

@@ -11,7 +11,7 @@ module.exports = class {
         if(!member) return;
         let server = await this.client.db.getRow("server", guild.id)
         if(!server.data || server.data == null) return
-        if(server.data.welcomeToggle == false) return
+        if(server.data.welcomeToggle == false || server.data.welcomeToggle == undefined) return
         
         this.welcome(guild, member, server)
     }
