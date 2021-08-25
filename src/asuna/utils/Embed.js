@@ -243,7 +243,7 @@ class Embed {
      */
     get _json() {
         return {
-            embeds: {
+            embeds: [{
                 title: this.title,
                 type: 'rich',
                 description: this.description,
@@ -266,7 +266,7 @@ class Embed {
                         icon_url: this.footer.iconURL,
                     }
                     : null,
-            }
+            }]
         };
     }
     
