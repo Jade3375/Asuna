@@ -26,7 +26,7 @@ class Asuna extends BaseClusterWorker {
         this.bot.musicManager = new MusicManager(this.bot.lavalink, this.bot);
         this.bot.voteChecker =  new voteChecker(this.bot, process.env.lockbypass)
         this.bot.Embed = Embed
-        this.bot.options.intents = 4739
+        this.bot.options.intents = ["guilds", "guildMembers", "guildVoiceStates", "guildMessages", "directMessages"]
         this.bot.globalEmbedData = function(embed) {
             embed.setTimestamp()
                 .setColor(colours[Math.floor(Math.random() * colours.length)])
