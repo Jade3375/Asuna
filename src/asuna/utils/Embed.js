@@ -243,7 +243,7 @@ class Embed {
      */
     get _json() {
         return {
-            embed: {
+            embeds: {
                 title: this.title,
                 type: 'rich',
                 description: this.description,
