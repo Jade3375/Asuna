@@ -47,11 +47,11 @@ if (isMaster) {
     process.title = "Asuna - Master"
     // Code to only run for your master process
     Admiral.on('other', m => console.log(`[Fleet-other] ${m}`));
-    Admiral.on('debug', m => console.debug(`[Fleet-debug] ${m}`));
-    Admiral.on('warn', m => console.warn(`[Fleet-warn] ${m}`));
+    Admiral.on('debug', m => console.log(`[Fleet-debug] ${m}`));
+    Admiral.on('warn', m => console.log(`[Fleet-warn] ${m}`));
     Admiral.on('error', m => {
         if(m == undefined || m == "undefined") return
-        console.error(`[Fleet-error] ${m}`)
+        console.log(`[Fleet-error] ${m}`)
     });
     //Admiral.on('admiral_start', m => console.log('ASUNA: ' + m))
     Admiral.on('all', m => console.log('ASUNA: ' + m))
