@@ -10,6 +10,11 @@ module.exports = class {
         let server = await this.client.db.getRow("server", guild.id)
         if(!server.data || server.data == null) return
         if(server.data.welcomeToggle == false) return
+        
+        this.welcome(guild, member, server)
+    }
+
+    async welcome (guild, member, server) {
         let channel = await guild.channels.get(server.data.welcomeChannel)
         let members = guild.memberCount + ""
 
@@ -71,6 +76,5 @@ module.exports = class {
             })
 
         })
-
     }
 }
