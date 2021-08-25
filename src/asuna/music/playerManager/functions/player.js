@@ -82,7 +82,7 @@ class Player {
         let player = this.lavaLink.manager.players.get(guildID)
         if(!player) return "NoPlayer"
         player.skips = 0
-        player.skippers.clear()
+        player.skippers = new Map()
         player.play(player.queueManager.getSong())
 
         player.once("end", async () => {
