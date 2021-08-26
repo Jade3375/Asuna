@@ -14,37 +14,6 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
-# Setup
-
-- create a .env file in the root of the project
-- follow the following code 
-``` 
-#tokens
-BETA_TOKEN=""
-TOKEN=""
-DBL=""
-LAVALINK_PASS=""
-WEBHOOK_PASS=""
-DBPWD = ""
-
-#defualts
-lockbypass = false
-prefix = "%"
-
-#LAVALINK
-LAVALINK_PORT=""
-LAVALINK_IPS=""
-LAVALINK_NAMES=""
-
-#DB
-DBIP = ""
-DB = ""
-USR = ""
-MPORT = 
-
-#misc
-```
-
 # Usable Listeners:
 - listener NAME | whatToLog whitelist name
 - admiral_start | admiral_start
