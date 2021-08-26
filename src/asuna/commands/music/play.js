@@ -35,6 +35,7 @@ class Play extends Command {
 
         let embed = new this.Embed()
         .setDescription(`[${search.info.title}](${search.info.uri}) has been added to the queue`)
+        .setFooter("due to recent developments in the music bot scene we will be removing music from the bot on the 30th of august")
         this.client.globalEmbedData(embed)
 
         message.channel.createMessage(embed.build())
