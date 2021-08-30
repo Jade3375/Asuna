@@ -71,6 +71,7 @@ class queueManager {
     async searchSong(lavaLink, song) {
         let searchType = "scsearch"
         let search = await lavaLink.manager.search(`${searchType}: ${song}`)
+        console.log(search)
         if(search.loadType == "PLAYLIST_LOADED") {
             search.forEach(element => {
                 this.queue.push(element)
