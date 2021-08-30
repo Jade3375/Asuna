@@ -69,7 +69,7 @@ class queueManager {
 
     //searches the song on yt and gets first result (used for queue)
     async searchSong(lavaLink, song) {
-        let searchType = "ytsearch"
+        let searchType = "scsearch"
         let search = await lavaLink.manager.search(`${searchType}: ${song}`)
         if(search.loadType == "PLAYLIST_LOADED") {
             search.forEach(element => {
