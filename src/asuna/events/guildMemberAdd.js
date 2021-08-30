@@ -7,6 +7,7 @@ module.exports = class {
     }
 
     async run (guild, member) {
+        if(global.dev) return
         this.client.users.clear()
         if(!member) return;
         let server = await this.client.db.getRow("server", guild.id)

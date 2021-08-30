@@ -242,7 +242,33 @@ class Embed {
      * Get the json for sending to discord
      */
     get _json() {
-        return {
+        if(global.dev) return {
+            embed: {
+                title: this.title,
+                type: 'rich',
+                description: this.description,
+                url: this.url,
+                timestamp: this.timestamp ? new Date(this.timestamp) : null,
+                color: this.color,
+                fields: this.fields,
+                thumbnail: this.thumbnail,
+                image: this.image,
+                author: this.author
+                    ? {
+                        name: this.author.name,
+                        url: this.author.url,
+                        icon_url: this.author.iconURL,
+                    }
+                    : null,
+                footer: this.footer
+                    ? {
+                        text: this.footer.text,
+                        icon_url: this.footer.iconURL,
+                    }
+                    : null,
+            }
+        }
+        else return {
             embeds: [{
                 title: this.title,
                 type: 'rich',
