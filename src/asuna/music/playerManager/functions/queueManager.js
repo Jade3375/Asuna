@@ -71,9 +71,10 @@ class queueManager {
     async searchSong(lavaLink, song) {
         let ytreg = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/gm
         let searchType = "scsearch:"
+        let res
 
-        if(song.match(ytreg)) let res = song
-        else let res = `${searchType} ${song}`
+        if(song.match(ytreg)) res = song
+        else res = `${searchType} ${song}`
 
         let search = await lavaLink.manager.search(res)
         if(search.loadType == "PLAYLIST_LOADED") {
