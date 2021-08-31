@@ -45,13 +45,17 @@ class Play extends Command {
     }
 
     async play(search, message, guildID) {
-        this.client.musicManager.player.PlayTrack(guildID, message.channel.id)// if the player isn't playing start playing
-        let embed = new this.Embed()
-        .addField('Now Playing', `[${search.info.title}](${search.info.uri})`)
-        this.client.globalEmbedData(embed)
-
-        message.channel.createMessage(embed.build())
-        this.client.getChannel("684703815009828884").createMessage(`${search.info.title} has been added to there queue in ${message.guildID}`)
+        try {
+            this.client.musicManager.player.PlayTrack(guildID, message.channel.id)// if the player isn't playing start playing
+            let embed = new this.Embed()
+            .addField('Now Playing', `[${search.info.title}](${search.info.uri})`)
+            this.client.globalEmbedData(embed)
+    
+            message.channel.createMessage(embed.build())
+            this.client.getChannel("684703815009828884").createMessage(`${search.info.title} has been added to there queue in ${message.guildID}`)
+        } catch (error) {
+            message.channel.createMessage("an error occured trying to play / get track info")
+        }
     }
 
 }
