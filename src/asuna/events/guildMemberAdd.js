@@ -48,7 +48,7 @@ module.exports = class {
         let canvas = createCanvas(500,200)
         let ctx = canvas.getContext('2d');
 
-        let image = await loadImage(server.data.welcomeImage)
+        let image = await loadImage(server.data.welcomeImage || "https://i.imgur.com/FijIayy.png")
         ctx.drawImage(image, 0,0)
 
             
