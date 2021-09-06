@@ -30,7 +30,8 @@ class Play extends Command {
         if(search == 'NoSong') return message.channel.createMessage(`Couldn\'t find ${searchString} on youtube`) // if song could not be found, let the user know
 
         //if(!this.client.musicManager.player.IsPlaying(guildID) && search.) return this.play(search, message)
-        console.log(search)
+        
+        if(search == "novid") return message.channel.createMessage("No song with this title was found.")
         
         if(!this.client.musicManager.player.IsPlaying(guildID)) return this.play(search, message, guildID)
 
