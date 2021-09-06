@@ -25,7 +25,7 @@ module.exports = class extends Command {
         if(!args.join(" ").match(/#[0-9a-f]{6}/)[0]) return message.channel.createMessage("please provide a color in hex e.g. #ef42f5")
 
         let welcomeColor = args.join(" ").match(/#[0-9a-f]{6}/)[0]
-        message.channel.createMessage(`colour set to ${guild.welcomeColor}`)
+        message.channel.createMessage(`colour set to ${welcomeColor}`)
         
 
         embed.setTitle("set colour")
