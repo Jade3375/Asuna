@@ -83,7 +83,9 @@ class Player {
         if(!player) return "NoPlayer"
         player.skips = 0
         player.skippers = new Map()
-        player.play(player.queueManager.getSong())
+        player.play(player.queueManager.getSong()).catch(e => {
+            console.log(e)
+        })
 
         player.once("end", async () => {
             await player.queueManager.NextSong()
