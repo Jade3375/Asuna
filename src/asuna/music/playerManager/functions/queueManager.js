@@ -74,10 +74,10 @@ class queueManager {
         let searchType = "scsearch:"
         let res
 
-        if(song.match(ytreg)) res = song
+        if(ytreg.test(song)) res = song
+        else if (twreg.test(song)) res = song
         else res = `${searchType} ${song}`
-        if(song.match(twreg)) res = song
-        else res = `${searchType} ${song}`
+
 
         let search = await lavaLink.manager.search(res)
         if(search.loadType == "PLAYLIST_LOADED") {
