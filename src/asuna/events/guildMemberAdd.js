@@ -6,8 +6,8 @@ module.exports = class {
         this.client = client;
     }
 
-    async run (guild, member) {
-        if(global.dev) return
+    async run (guild, member, opt) {
+        if(global.dev && !opt.run) return
         this.client.users.clear()
         if(!member) return;
         let server = await this.client.db.getRow("server", guild.id)
@@ -53,7 +53,7 @@ module.exports = class {
 
             
         ctx.font = 'bold 24px "Helvet"'
-        ctx.fillStyle = server.data.welcomeColor | "white"
+        ctx.fillStyle = server.data.welcomeColor || "white"
         ctx.fillText(`Welcome ${member.username}!`, 160, 85)
 
         ctx.font = 'medium 24px "Helvet"'
@@ -63,7 +63,7 @@ module.exports = class {
         ctx.arc(100, 100, 48, 0, Math.PI * 2);
         ctx.clip();
 
-        ctx.fillStyle = server.data.welcomeColor | "white";
+        ctx.fillStyle = server.data.welcomeColor || "white";
         ctx.fillRect(0, 0, 500,200)
 
         ctx.beginPath();
