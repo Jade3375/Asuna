@@ -75,8 +75,7 @@ class queueManager {
         let res
 
         if(ytreg.test(song)) res = song
-        else res = `${searchType} ${song}`
-        if(twreg.test(song)) res = song
+        else if (twreg.test(song)) res = song
         else res = `${searchType} ${song}`
 
         console.log(res)
