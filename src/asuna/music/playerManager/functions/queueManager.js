@@ -78,7 +78,6 @@ class queueManager {
         else if (twreg.test(song)) res = song
         else res = `${searchType} ${song}`
 
-        console.log(res)
 
         let search = await lavaLink.manager.search(res)
         if(search.loadType == "PLAYLIST_LOADED") {
