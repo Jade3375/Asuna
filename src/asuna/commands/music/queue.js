@@ -18,7 +18,7 @@ module.exports = class extends Command {
 
         let player = this.client.musicManager.player.getPlayer(guildID)
 
-        if(!player._connected) return message.channel.createMessage('Queue is empty') // check if player is connected
+        if(!this.client.musicManager.player.IsConnected(guildID)) return message.channel.createMessage('I am not connected to any voice channel') // check if player is connected
 
         let pageSize = 10
         let page
