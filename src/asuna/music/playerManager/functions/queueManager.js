@@ -74,9 +74,9 @@ class queueManager {
         let searchType = "scsearch:"
         let res
 
-        if(song.match(ytreg)) res = song
+        if(ytreg.test(song)) res = song
         else res = `${searchType} ${song}`
-        if(song.match(twreg)) res = song
+        if(twreg.test(song)) res = song
         else res = `${searchType} ${song}`
 
         console.log(res)
