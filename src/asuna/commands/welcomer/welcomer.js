@@ -23,7 +23,7 @@ module.exports = class extends Command {
         
         let guild = row.data
                 if(guild.welcomeChannel == "" || !guild.welcomeChannel) return message.channel.createMessage("no welcome channel set")
-                this.client.emit("guildMemberAdd", message.member.guild, message.member)
+                this.client.emit("guildMemberAdd", message.member.guild, message.member, {run: true})
                 message.channel.createMessage("sending test welcome to set channel")
     }
 };
