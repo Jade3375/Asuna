@@ -18,7 +18,7 @@ class Play extends Command {
 
         let player = this.client.musicManager.player.getPlayer(guildID)
 
-        if(!player._connected) return message.channel.createMessage('I am not connected to any voice channel') // check if player is connected
+        if(!this.client.musicManager.player.IsConnected(guildID)) return message.channel.createMessage('I am not connected to any voice channel') // check if player is connected
 
         let channel = message.member.voiceState.channelID // check if user is in a vc
         if(!channel) return message.channel.createMessage('You might want to join the voice channel first')
