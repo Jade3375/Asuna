@@ -94,7 +94,7 @@ class queueManager {
     }
 
     getSong() {
-        return this.queue[0]
+        return this.queue[0] || null
     }
 
 }
