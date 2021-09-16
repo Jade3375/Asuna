@@ -11,7 +11,6 @@ class Player {
         this.lavaLink = manager
         this.Queue = require('./queueManager');
         this.client = client
-        this.msg
     }
 
     // queue can only  be accessed by player so this just calls the search function in the queue class
@@ -42,6 +41,7 @@ class Player {
             this.lavaLink.manager.players.get(guildID).setVolume(50)
             this.lavaLink.manager.players.get(guildID).skips = 0
             this.lavaLink.manager.players.get(guildID).skippers = new Map()
+            this.lavaLink.manager.players.get(guildID).msg = null
             return "player Created"
         } catch (error) {
             return `player not created due to error ${error}`
@@ -109,9 +109,9 @@ class Player {
 
                 let c = this.client.getChannel(channelID)
                 if(!c) return
-                this.msg?.channel?.unsendMessage(msg.id)
+                this.lavaLink.manager.players.get(guildID).msg.channel?.unsendMessage(msg.id)
                 let msg = await c.createMessage(embed.build()).catch()
-                this.msg = msg
+                this.lavaLink.manager.players.get(guildID).msg = msg
             }
         })
     }
