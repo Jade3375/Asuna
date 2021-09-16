@@ -22,7 +22,7 @@ module.exports = class extends Command {
         if(!usr) return message.channel.createMessage(`Who should I ban? The air?`)
 
         //perm check for person being kicked
-        if(!this.checkPerm(usr, message, perm)) return message.channel.createMessage(`This user is too high a level for me to ban`)
+        if(this.checkPerm(usr, message, perm)) return message.channel.createMessage(`This user is too high a level for me to ban`)
         args.shift()
 
         this.client.kickGuildMember(message.guildID, usr, args.join(" ")).catch(err => {

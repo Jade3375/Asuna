@@ -22,7 +22,7 @@ module.exports = class extends Command {
         
         if(isNaN(parseInt(args[0]))) return message.channel.createMessage(`I can\'t remove ${args[0]} number of messages`)
 
-        message.channel.purge(args[0])
+        message.channel.purge({limit: args[0], reason: `${args[0]} messages purged by ${message.author.username} `})
     }
 
 }
