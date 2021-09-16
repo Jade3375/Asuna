@@ -109,7 +109,7 @@ class Player {
 
                 let c = this.client.getChannel(channelID)
                 if(!c) return
-                msg.unsendMessage(msg.id)
+                this.msg.unsendMessage(msg.id)
                 let msg = await c.createMessage(embed.build()).catch()
                 this.msg = msg
             }
