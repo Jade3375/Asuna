@@ -92,7 +92,10 @@ class Player {
                 this.client.globalEmbedData(embed)
 
                 let c = this.client.getChannel(channelID)
-                c.createMessage(embed.build())
+                c.createMessage(embed.build()).then(m => {
+                    this.lavaLink.manager.players.get(guildID).msg = m.id
+                    console.log(m.id)
+                })
                 this.DisconnectPlayer(guildID, "END")
                 return
             }
