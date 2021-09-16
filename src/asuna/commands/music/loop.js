@@ -27,10 +27,9 @@ class Loop extends Command {
         if(channel != player.channel) return message.channel.createMessage('I cannot change loop settings if you are not in the same channel as me');
 
         if(args[0] == "all") type = 3
-        if(args[0] == "single") type = 2
-        if(args[0] == "off") type = 1
-
-        if(type == (undefined || null || "undefined")) {
+        else if(args[0] == "single") type = 2
+        else if(args[0] == "off") type = 1
+        else {
             let embed = new this.Embed()
             .setDescription(`Invalid Usage: %loop <all|single|off>`)
             this.client.globalEmbedData(embed)
