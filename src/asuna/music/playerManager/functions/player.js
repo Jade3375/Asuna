@@ -103,6 +103,7 @@ class Player {
                 .addField('Now Playing', `[${song.info.title}](${song.info.uri})`)
                 this.client.globalEmbedData(embed)
 
+                let c = this.client.getChannel(channelID)
                 this.lavaLink.manager.players.get(guildID).msg?.channel?.unsendMessage(msg.id)
                 this.lavaLink.manager.players.get(guildID).msg = await c.createMessage(embed.build())
             }
