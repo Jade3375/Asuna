@@ -30,7 +30,7 @@ class Loop extends Command {
         if(args[0] == "single") type = 2
         if(args[0] == "off") type = 1
 
-        if(type == (undefined || null)) {
+        if(type == (undefined || null || "undefined")) {
             let embed = new this.Embed()
             .setDescription(`Invalid Usage: %loop <all|single|off>`)
             this.client.globalEmbedData(embed)
