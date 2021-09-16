@@ -68,14 +68,10 @@ class Player {
 
     //disconnects player from a channel
     DisconnectPlayer(guildID, message) {
-        let player = this.lavaLink.manager.players.get(guildID)
-        if(player) {
-            player.stop()
-            player.queueManager.clearQueue()
-            player._connected = false
-            player.disconnect(true)
-            return message
+        if(this.lavaLink.manager.players.get(guildID)) {
+            this.lavaLink.manager.players.get(guildID).disconnect()
         }
+        return message
     }
 
     //plays tracks
@@ -107,11 +103,8 @@ class Player {
                 .addField('Now Playing', `[${song.info.title}](${song.info.uri})`)
                 this.client.globalEmbedData(embed)
 
-                let c = this.client.getChannel(channelID)
-                if(!c) return
-                this.lavaLink.manager.players.get(guildID).msg.channel?.unsendMessage(msg.id)
-                let msg = await c.createMessage(embed.build()).catch()
-                this.lavaLink.manager.players.get(guildID).msg = msg
+                this.lavaLink.manager.players.get(guildID).msg?.channel?.unsendMessage(msg.id)
+                this.lavaLink.manager.players.get(guildID).msg = await c.createMessage(embed.build())
             }
         })
     }
