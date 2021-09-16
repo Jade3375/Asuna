@@ -41,8 +41,6 @@ class Play extends Command {
         this.client.globalEmbedData(embed)
 
         message.channel.createMessage(embed.build())
-
-        this.client.getChannel("684703815009828884").createMessage(`${search.info.title} has been added to there queue in ${message.guildID}`)
         
     }
 
@@ -54,7 +52,6 @@ class Play extends Command {
             this.client.globalEmbedData(embed)
     
             message.channel.createMessage(embed.build())
-            this.client.getChannel("684703815009828884").createMessage(`${search.info.title} has been added to there queue in ${message.guildID}`)
         } catch (error) {
             message.channel.createMessage("an error occured trying to play / get track info")
         }
