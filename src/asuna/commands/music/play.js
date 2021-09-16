@@ -41,8 +41,6 @@ class Play extends Command {
         this.client.globalEmbedData(embed)
 
         message.channel.createMessage(embed.build())
-
-        this.client.getChannel("684703815009828884").createMessage(`${search.info.title} has been added to there queue in ${message.guildID}`)
         
     }
 
@@ -53,8 +51,9 @@ class Play extends Command {
             .addField('Now Playing', `[${search.info.title}](${search.info.uri})`)
             this.client.globalEmbedData(embed)
     
-            message.channel.createMessage(embed.build())
-            this.client.getChannel("684703815009828884").createMessage(`${search.info.title} has been added to there queue in ${message.guildID}`)
+            message.channel.createMessage(embed.build()).then(m => {
+                this.client.lavalink.manager.players.get(guildID).msg = m.id
+            })
         } catch (error) {
             message.channel.createMessage("an error occured trying to play / get track info")
         }

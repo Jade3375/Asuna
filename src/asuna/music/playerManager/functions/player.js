@@ -41,6 +41,7 @@ class Player {
             this.lavaLink.manager.players.get(guildID).setVolume(50)
             this.lavaLink.manager.players.get(guildID).skips = 0
             this.lavaLink.manager.players.get(guildID).skippers = new Map()
+            this.lavaLink.manager.players.get(guildID).msg = null
             return "player Created"
         } catch (error) {
             return `player not created due to error ${error}`
@@ -61,7 +62,8 @@ class Player {
     //disconnects player and removes it from bot
     DestroyPlayer(guildID) {
         if(this.lavaLink.manager.players.get(guildID)) {
-            this.lavaLink.manager.players.get(guildID).disconnect()
+            this.DestroyPlayer(guildID)
+            this.lavaLink.manager.players.get(guildID).destroy()
         }
     }
 
@@ -95,6 +97,7 @@ class Player {
                 this.client.globalEmbedData(embed)
 
                 let c = this.client.getChannel(channelID)
+                c.unsendMessage(this.lavaLink.manager.players.get(guildID).msg)
                 c.createMessage(embed.build())
                 this.DisconnectPlayer(guildID, "END")
                 return
@@ -107,8 +110,10 @@ class Player {
                 this.client.globalEmbedData(embed)
 
                 let c = this.client.getChannel(channelID)
-                if(!c) return
-                c.createMessage(embed.build()).catch(console.error())
+                c.unsendMessage(this.lavaLink.manager.players.get(guildID).msg)
+                c.createMessage(embed.build()).then(m => {
+                    this.lavaLink.manager.players.get(guildID).msg = m.id
+                })
             }
         })
     }
