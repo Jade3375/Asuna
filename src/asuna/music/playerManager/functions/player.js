@@ -11,6 +11,7 @@ class Player {
         this.lavaLink = manager
         this.Queue = require('./queueManager');
         this.client = client
+        this.msg
     }
 
     // queue can only  be accessed by player so this just calls the search function in the queue class
@@ -108,7 +109,9 @@ class Player {
 
                 let c = this.client.getChannel(channelID)
                 if(!c) return
-                c.createMessage(embed.build()).catch(console.error())
+                msg.unsendMessage(msg.id)
+                let msg = await c.createMessage(embed.build()).catch()
+                this.msg = msg
             }
         })
     }
