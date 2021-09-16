@@ -111,7 +111,6 @@ class Player {
 
                 let c = this.client.getChannel(channelID)
                 c.unsendMessage(this.lavaLink.manager.players.get(guildID).msg)
-                console.log(this.lavaLink.manager.players.get(guildID).msg)
                 c.createMessage(embed.build()).then(m => {
                     this.lavaLink.manager.players.get(guildID).msg = m.id
                 })
