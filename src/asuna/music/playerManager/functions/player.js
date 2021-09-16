@@ -62,16 +62,21 @@ class Player {
     //disconnects player and removes it from bot
     DestroyPlayer(guildID) {
         if(this.lavaLink.manager.players.get(guildID)) {
+            this.DestroyPlayer(guildID)
             this.lavaLink.manager.players.get(guildID).destroy()
         }
     }
 
     //disconnects player from a channel
     DisconnectPlayer(guildID, message) {
-        if(this.lavaLink.manager.players.get(guildID)) {
-            this.lavaLink.manager.players.get(guildID).destroy()
+        let player = this.lavaLink.manager.players.get(guildID)
+        if(player) {
+            player.stop()
+            player.queueManager.clearQueue()
+            player._connected = false
+            player.disconnect(true)
+            return message
         }
-        return message
     }
 
     //plays tracks
