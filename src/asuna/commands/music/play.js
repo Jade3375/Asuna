@@ -51,7 +51,9 @@ class Play extends Command {
             .addField('Now Playing', `[${search.info.title}](${search.info.uri})`)
             this.client.globalEmbedData(embed)
     
-            message.channel.createMessage(embed.build())
+            message.channel.createMessage(embed.build()).then(m => {
+                this.client.lavalink.manager.players.get(guildID).msg = m.id
+            })
         } catch (error) {
             message.channel.createMessage("an error occured trying to play / get track info")
         }
