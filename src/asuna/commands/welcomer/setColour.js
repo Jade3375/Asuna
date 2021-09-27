@@ -22,7 +22,7 @@ module.exports = class extends Command {
         
         let embed = new this.Embed();
 
-        if(!args.join(" ").match(/#[0-9a-f]{6}/)[0]) return message.channel.createMessage("please provide a color in hex e.g. #ef42f5")
+        if(!args.join(" ").match(/#[0-9a-f]{6}/)[0] || !args[0]) return message.channel.createMessage("please provide a color in hex e.g. #ef42f5")
 
         let welcomeColor = args.join(" ").match(/#[0-9a-f]{6}/)[0]
         //message.channel.createMessage(`colour set to ${welcomeColor}`)
