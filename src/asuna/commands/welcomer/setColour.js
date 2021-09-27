@@ -21,8 +21,9 @@ module.exports = class extends Command {
         if (row.data == null) this.client.db.addRow("server", message.guildID, {prefix: '%', logChannel: ' ', welcomeChannel: ' ', welcomeMessage: ` `, welcomeImage: ` `, welcomeToggle : false ,premium: false})
         
         let embed = new this.Embed();
+        let reg = /#[0-9a-f]{6}/
 
-        if(!args.join(" ").match(/#[0-9a-f]{6}/)[0]) return message.channel.createMessage("please provide a color in hex e.g. #ef42f5")
+        if(!reg.test(args.join(" "))) return message.channel.createMessage("please provide a color in hex e.g. #ef42f5")
 
         let welcomeColor = args.join(" ").match(/#[0-9a-f]{6}/)[0]
         //message.channel.createMessage(`colour set to ${welcomeColor}`)
