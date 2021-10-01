@@ -11,7 +11,7 @@ module.exports = class {
         if(global.dev) {
             prefix = "a!"
         } else {
-            prefix = await this.client.pf.getPrefix(message.guildID)
+            prefix = await this.client.pf.getPrefix(message.guildID).toLowerCase()
         }
         
         let args = await message.content.slice(prefix.length).trim().split(' ');
@@ -23,7 +23,7 @@ module.exports = class {
 
         if (this.client.commands.has(cmd)) {
             if(this.client.commands.get(cmd).conf.nsfw) {
-                if(await this.client.voteChecker.checkVote(message.author.id) == false) return message.channel.createMessage(`Vote for the bot and use all vote commands for 12 hours https://top.gg/bot/420907324945989632/vote`)
+                if(await this.client.voteChecker.checkVote(message.author.id) == false) return message.channel.createMessage(`Vote for the bot and use all vote commands for 12 hours https:\//top.gg/bot/420907324945989632/vote`)
 
                 this.runCommand(cmd,message,args)
                 return
