@@ -19,7 +19,7 @@ module.exports = class {
         let cmd = args.shift().toLowerCase();
 
         if(getUserFromMention(temp[0]) == this.client.user.id) return message.channel.createMessage(`The prefix here is \`${prefix}\` please run ${prefix}help to see a list of commmands`)
-        if (temp[0].toLowerCase() != `${prefix}${cmd}`) return;
+        if (temp[0].toLowerCase() != `${prefix}${cmd}` || temp[0] != `${prefix}${cmd}`) return;
 
         if (this.client.commands.has(cmd)) {
             if(this.client.commands.get(cmd).conf.nsfw) {
