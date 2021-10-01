@@ -16,7 +16,7 @@ module.exports = class extends Command {
     async run(message, args) {
 
         if (message.channel.nsfw){
-            fetch(`https://nekos.life/api/v2/img/pussy`)
+            fetch(`https://nekobot.xyz/api/image/pussy`)
             .then(res => res.json())
             .then(json => {
                 let responses = ['oh my thats lewd', 'ara ara', 'don\'t get all hot and bothered now']
