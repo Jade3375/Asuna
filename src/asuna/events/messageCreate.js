@@ -11,7 +11,7 @@ module.exports = class {
         if(global.dev) {
             prefix = "a!"
         } else {
-            prefix = await this.client.pf.getPrefix(message.guildID)
+            prefix = await this.client.pf.getPrefix(message.guildID).toLowerCase()
         }
         
         let args = await message.content.slice(prefix.length).trim().split(' ');
