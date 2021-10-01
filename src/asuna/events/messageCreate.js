@@ -35,7 +35,7 @@ module.exports = class {
     runCommand(cmd,message,args) {
         let command = this.client.commands.get(cmd)
         command.run(message, args, this.client)
-        console.log(`[   Command   ]    ${cmd} has been used.`)
+        if(this.client.cmdlogger == true) console.log(`[   Command   ]    ${cmd} has been used.`)
     }
 
 }
