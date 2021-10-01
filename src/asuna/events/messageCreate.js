@@ -11,7 +11,7 @@ module.exports = class {
         if(global.dev) {
             prefix = "a!"
         } else {
-            prefix = await this.client.pf.getPrefix(message.guildID).toLowerCase()
+            prefix = await this.client.pf.getPrefix(message.guildID)
         }
         
         let args = await message.content.slice(prefix.length).trim().split(' ');
@@ -19,7 +19,7 @@ module.exports = class {
         let cmd = args.shift().toLowerCase();
 
         if(getUserFromMention(temp[0]) == this.client.user.id) return message.channel.createMessage(`The prefix here is \`${prefix}\` please run ${prefix}help to see a list of commmands`)
-        if (temp[0].toLowerCase() != `${prefix}${cmd}`) return;
+        if (temp[0].toLowerCase() != `${prefix.toLowerCase()}${cmd}`) return;
 
         if (this.client.commands.has(cmd)) {
             if(this.client.commands.get(cmd).conf.nsfw) {
