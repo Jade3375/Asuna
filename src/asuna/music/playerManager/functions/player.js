@@ -87,7 +87,12 @@ class Player {
         player.skippers = new Map()
         let song = await player.queueManager.getSong()
         if(!song || song == undefined) return
-        player.play(song)
+        player.play(song).catch(e => {
+            player.queueManager.NextSong()
+            this.client.getChannel(channelID).createMessage("An error occured while trying to play this song, skipping.....")
+            this.PlayTrack(guildID, channelID)
+            console.error(e)
+        })
 
         player.once("end", async () => {
             await player.queueManager.NextSong()
