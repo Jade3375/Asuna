@@ -81,8 +81,8 @@ class Player {
 
     //plays tracks
     async PlayTrack(guildID, channelID) {
+        let player = this.lavaLink.manager.players.get(guildID)
         try {
-            let player = this.lavaLink.manager.players.get(guildID)
             if(!player) return "NoPlayer"
             player.skips = 0
             player.skippers = new Map()
