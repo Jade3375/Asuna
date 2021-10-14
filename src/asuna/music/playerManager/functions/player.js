@@ -88,40 +88,10 @@ class Player {
         let song = await player.queueManager.getSong()
         if(!song || song == undefined) return
         player.play(song).catch(e => {
-            this.client.getChannel(channelID).createMessage("an error occured with this song, skipping.....")
-            await player.queueManager.NextSong()
-            if(player.queueManager.queue == (null || undefined) ) {
-                let embed = new this.client.Embed()
-                .setDescription(`playback has ended, thanks for listening :heart:`)
-                this.client.globalEmbedData(embed)
-
-                let c = this.client.getChannel(channelID)
-                c.unsendMessage(this.lavaLink.manager.players.get(guildID).msg).catch(e => {
-                    console.log(e)
-                })
-                c.createMessage(embed.build()).catch(e => {
-                    console.log(e)
-                })
-                this.DisconnectPlayer(guildID, "END")
-                return
-            }
-            else { 
-                this.PlayTrack(guildID, channelID)
-                let song = await player.queueManager.getSong()
-                let embed = new this.client.Embed()
-                .addField('Now Playing', `[${song.info.title}](${song.info.uri})`)
-                this.client.globalEmbedData(embed)
-
-                let c = this.client.getChannel(channelID)
-                c.unsendMessage(this.lavaLink.manager.players.get(guildID).msg).catch(e => {
-                    console.log(e)
-                })
-                c.createMessage(embed.build()).then(m => {
-                    this.lavaLink.manager.players.get(guildID).msg = m.id
-                }).catch(e => {
-                    console.log(e)
-                })
-            }
+            player.queueManager.NextSong()
+            this.client.getChannel(channelID).createMessage("An error occured while trying to play this song, skipping.....")
+            this.PlayTrack(guildID, channelID)
+            console.error(e)
         })
 
         player.once("end", async () => {
