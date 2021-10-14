@@ -81,18 +81,25 @@ class Player {
 
     //plays tracks
     async PlayTrack(guildID, channelID) {
-        let player = this.lavaLink.manager.players.get(guildID)
-        if(!player) return "NoPlayer"
-        player.skips = 0
-        player.skippers = new Map()
-        let song = await player.queueManager.getSong()
-        if(!song || song == undefined) return
-        player.play(song).catch(e => {
-            player.queueManager.NextSong()
-            this.client.getChannel(channelID).createMessage("An error occured while trying to play this song, skipping.....")
-            this.PlayTrack(guildID, channelID)
-            console.error(e)
-        })
+        try {
+            let player = this.lavaLink.manager.players.get(guildID)
+            if(!player) return "NoPlayer"
+            player.skips = 0
+            player.skippers = new Map()
+            let song = await player.queueManager.getSong()
+            if(!song || song == undefined) return
+            player.play(song)
+        } catch (error) {
+           player.queueManager.NextSong()
+           this.client.getChannel(channelID).createMessage("An error occured while trying to play this song, skipping.....")
+           this.PlayTrack(guildID, channelID)
+           console.error(e)
+        }
+
+        // player.queueManager.NextSong()
+        // this.client.getChannel(channelID).createMessage("An error occured while trying to play this song, skipping.....")
+        // this.PlayTrack(guildID, channelID)
+        // console.error(e)
 
         player.once("end", async () => {
             await player.queueManager.NextSong()
