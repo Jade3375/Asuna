@@ -62,7 +62,7 @@ class Player {
     //disconnects player and removes it from bot
     DestroyPlayer(guildID) {
         if (this.lavaLink.manager.players.get(guildID)) {
-            player.destroyPlayer(guildID)
+            return
             //this.lavaLink.manager.players.get(guildID).destroy()
             //this.lavaLink.manager.players.delete(guildID)
         }
@@ -76,6 +76,8 @@ class Player {
             player.queueManager.clearQueue()
             player._connected = false
             player.disconnect(true)
+            this.lavaLink.manager.players.get(guildID).destroy()
+            this.lavaLink.manager.players.delete(guildID)
             return message
         }
     }
@@ -93,7 +95,7 @@ class Player {
         } catch (error) {
            player.queueManager.NextSong()
            if(player.queueManager.queue == null) {
-               player.DestroyPlayer(guildID)
+               player.DisconnectPlayer(guildID)
                this.client.getChannel(channelID).createMessage("something broke with the song, oopsie")
                return
            } else {
