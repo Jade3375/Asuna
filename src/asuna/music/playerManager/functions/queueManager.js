@@ -80,12 +80,12 @@ class queueManager {
 
 
         let search = await lavaLink.manager.search(res)
-        if(search.loadType == "PLAYLIST_LOADED") {
-            search.forEach(element => {
-                this.queue.push(element)
-            });
-            return(search[0])
-        }
+        // if(search.loadType == "PLAYLIST_LOADED") {
+        //     search.forEach(element => {
+        //         this.queue.push(element)
+        //     });
+        //     return(search[0])
+        // }
         let vid = search.tracks[0]
         if(vid == (undefined || null)) return "novid"
         if(this.queue == null) this.queue = []

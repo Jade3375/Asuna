@@ -62,8 +62,8 @@ class Player {
     //disconnects player and removes it from bot
     DestroyPlayer(guildID) {
         if(this.lavaLink.manager.players.get(guildID)) {
-            this.DestroyPlayer(guildID)
             this.lavaLink.manager.players.get(guildID).destroy()
+            this.lavaLink.manager.players.delete(guildID)
         }
     }
 
@@ -91,15 +91,16 @@ class Player {
             player.play(song)
         } catch (error) {
            player.queueManager.NextSong()
-           this.client.getChannel(channelID).createMessage("An error occured while trying to play this song, skipping.....")
-           this.PlayTrack(guildID, channelID)
-           console.error(e)
+           if(player.queueManager.queue == null) {
+               player.DestroyPlayer(guildID)
+               this.client.getChannel(channelID).createMessage("something broke with the song, oopsie")
+               return
+           } else {
+            this.client.getChannel(channelID).createMessage("An error occured while trying to play this song, skipping.....")
+            this.PlayTrack(guildID, channelID)
+            console.error("music error")
+           }
         }
-
-        // player.queueManager.NextSong()
-        // this.client.getChannel(channelID).createMessage("An error occured while trying to play this song, skipping.....")
-        // this.PlayTrack(guildID, channelID)
-        // console.error(e)
 
         player.once("end", async () => {
             await player.queueManager.NextSong()
