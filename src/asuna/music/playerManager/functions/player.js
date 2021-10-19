@@ -19,29 +19,29 @@ class Player {
     }
     //checks if the player is playing
     IsPlaying(guildID) {
-        return this.lavaLink.manager.players.get(guildID).playing
+        return this.getPlayer(guildID).playing
     }
     //checks if player is connected 
     IsConnected(guildID) {
-        if(!this.lavaLink.manager.players.get(guildID).channel) return false
+        if(!this.getPlayer(guildID).channel) return false
         return true
     }
 
     //checks to see if the player does exist
     CheckPlayer(guildID) {
-        if(!this.lavaLink.manager.players.get(guildID)) return false
+        if(!this.getPlayer(guildID)) return false
         return true
     }
 
     //creates the player for a guild
     CreatePlayer(guildID) {
-        if(this.lavaLink.manager.players.get(guildID) != null) return
+        if(this.getPlayer(guildID) != null) return
         try {
-            this.lavaLink.manager.create(guildID).then(this.lavaLink.manager.players.get(guildID).queueManager = new this.Queue(guildID))
-            this.lavaLink.manager.players.get(guildID).setVolume(50)
-            this.lavaLink.manager.players.get(guildID).skips = 0
-            this.lavaLink.manager.players.get(guildID).skippers = new Map()
-            this.lavaLink.manager.players.get(guildID).msg = null
+            this.lavaLink.manager.create(guildID).then(this.getPlayer(guildID).queueManager = new this.Queue(guildID))
+            this.getPlayer(guildID).setVolume(50)
+            this.getPlayer(guildID).skips = 0
+            this.getPlayer(guildID).skippers = new Map()
+            this.getPlayer(guildID).msg = null
             return "player Created"
         } catch (error) {
             return `player not created due to error ${error}`
@@ -54,20 +54,20 @@ class Player {
 
     //connects player to a channel
     async Connectplayer(guildID, channelID) {
-        if(this.lavaLink.manager.players.get(guildID)) {
-            this.lavaLink.manager.players.get(guildID).connect(channelID) //deafens the bot  on channel join cuz people be scared 
+        if(this.getPlayer(guildID)) {
+            this.getPlayer(guildID).connect(channelID) //deafens the bot  on channel join cuz people be scared 
         }
     }
 
     //disconnects player from a channel
     DisconnectPlayer(guildID, message) {
-        let player = this.lavaLink.manager.players.get(guildID)
+        let player = this.getPlayer(guildID)
         if(player) {
             player.stop()
             player.queueManager.clearQueue()
             player._connected = false
             player.disconnect(true)
-            this.lavaLink.manager.players.get(guildID).destroy()
+            this.getPlayer(guildID).destroy()
             this.lavaLink.manager.players.delete(guildID)
             return message
         }
@@ -75,7 +75,7 @@ class Player {
 
     //plays tracks
     async PlayTrack(guildID, channelID) {
-        let player = this.lavaLink.manager.players.get(guildID)
+        let player = this.getPlayer(guildID)
         try {
             if(!player) return "NoPlayer"
             player.skips = 0
@@ -104,7 +104,7 @@ class Player {
                 this.client.globalEmbedData(embed)
 
                 let c = this.client.getChannel(channelID)
-                c.unsendMessage(this.lavaLink.manager.players.get(guildID).msg).catch(e => {
+                c.unsendMessage(this.getPlayer(guildID).msg).catch(e => {
                     console.log(e)
                 })
                 c.createMessage(embed.build()).catch(e => {
@@ -121,11 +121,11 @@ class Player {
                 this.client.globalEmbedData(embed)
 
                 let c = this.client.getChannel(channelID)
-                c.unsendMessage(this.lavaLink.manager.players.get(guildID).msg).catch(e => {
+                c.unsendMessage(this.getPlayer(guildID).msg).catch(e => {
                     console.log(e)
                 })
                 c.createMessage(embed.build()).then(m => {
-                    this.lavaLink.manager.players.get(guildID).msg = m.id
+                    this.getPlayer(guildID).msg = m.id
                 }).catch(e => {
                     console.log(e)
                 })
