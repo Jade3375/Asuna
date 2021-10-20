@@ -4,9 +4,9 @@ class Poke extends Command {
     constructor (client) {
         super(client, {
             name: "poke",
-            description: "poke someone",
-            usage: "%poke [user]",
-            aliases: [ ]
+            description: "Poke someone!",
+            usage: "%poke [@USER]",
+            aliases: ["jab"]
         });
         this.client = client
     }
@@ -21,12 +21,11 @@ class Poke extends Command {
         let mentioned = message.mentions[0].id;
         let res = await fetch("https://rra.ram.moe/i/r?type=poke");
         let json = await res.json();
-
-        
         let responses = ['How lewd!', 'EW...', 'Awwww cuteeeeeeeee.', 'Get a room.', 'Hawt!', 'Why?', 'C-Can I have one?']
+        
         let embed = new this.Embed()
           .setColor("#FF69B4")
-          .setDescription(`<@${message.author.id}> has tickled <@${mentioned}>. ${responses[Math.floor(Math.random() * responses.length)]}`)
+          .setDescription(`<@${message.author.id}> has tickled <@${mentioned}>! ${responses[Math.floor(Math.random() * responses.length)]}`)
           .setImage(`https://rra.ram.moe${json.path}`)
         this.client.globalEmbedData(embed)
         message.channel.createMessage(embed.build());

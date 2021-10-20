@@ -5,9 +5,9 @@ class Meme extends Command {
     constructor (client) {
         super(client, {
             name: "meme",
-            description: "memes from reddit",
+            description: "Get a random meme from Reddit!",
             usage: "%meme",
-            aliases: [ ]
+            aliases: ["dankmeme"]
         });
         this.client = client
     }
@@ -31,14 +31,12 @@ class Meme extends Command {
         ]
 
         let subreddit = reddit[Math.floor(Math.random() * reddit.length)];
-
         let url = await randomPuppy(subreddit);
+
         let embed = new this.Embed()
-        .setDescription(`Here is a meme from ${subreddit}\n[[Meme]](${url})`)
-        .setImage(url)
-
+          .setDescription(`Here is a meme from ${subreddit}!\n[[Meme]](${url})`)
+          .setImage(url)
         message.channel.createMessage(embed.build());
-
     }
 }
 module.exports = Meme;

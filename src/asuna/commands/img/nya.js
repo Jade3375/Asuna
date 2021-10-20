@@ -7,7 +7,7 @@ class Nya extends Command {
             name: "nya",
             description: "Nya?",
             usage: "%nya",
-            aliases: [ ]
+            aliases: []
         });
         this.client = client
     }
@@ -17,12 +17,9 @@ class Nya extends Command {
         let json = await res.json();
 
         let embed = new this.Embed()
-        .setDescription(`Nya?`)
-        .setImage(json.url)
-
+          .setDescription(`Nya?`)
+          .setImage(json.url)
         message.channel.createMessage(embed.build());
     }
-    
 }
-
 module.exports = Nya;

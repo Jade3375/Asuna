@@ -4,22 +4,21 @@ class Fact extends Command {
     constructor (client) {
         super(client, {
             name: "fact",
-            description: "get a random fact",
+            description: "Get a random fact!",
             usage: "%fact",
-            aliases: [ ]
+            aliases: []
         });
         this.client = client
     }
 
     async run(message, args) {
-       let res = await fetch("https://nekos.life/api/v2/fact")
-       let json = res.json()
-       let fact = json.fact
+        let res = await fetch("https://nekos.life/api/v2/fact")
+        let json = res.json()
+        let fact = json.fact
 
-       let embed = new this.Embed()
-       .setDescription(`Your random fact is **${fact}**!`)
-
-       message.channel.createMessage(embed.build())
+        let embed = new this.Embed()
+          .setDescription(`Your random fact is **${fact}**!`)
+        message.channel.createMessage(embed.build())
     }
 }
 module.exports = Fact;

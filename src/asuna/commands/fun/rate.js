@@ -6,7 +6,7 @@ class Rate extends Command {
             name: "rate",
             description: "I will rate whatever you want!",
             usage: "%rate",
-            aliases: [ ]
+            aliases: []
         });
         this.client = client
     }
@@ -14,6 +14,7 @@ class Rate extends Command {
     async run(message, args) {
         let object = message.content.substring(5)
     	let rating = Math.floor(Math.random() * 10) +1;
+        
         message.channel.createMessage( message.author.username + " **I give " + object + " a " + rating + "/10**!")
     }
 }

@@ -17,10 +17,12 @@ class Player {
     async searchSong(guildID, song){
         return await this.getPlayer(guildID).queueManager.searchSong(this.lavaLink, song)
     }
+
     //checks if the player is playing
     IsPlaying(guildID) {
         return this.getPlayer(guildID).playing
     }
+
     //checks if player is connected 
     IsConnected(guildID) {
         if(!this.getPlayer(guildID).channel) return false
@@ -47,6 +49,7 @@ class Player {
             return `player not created due to error ${error}`
         }
     }
+
     //returns the player, mostly used for debugging 
     getPlayer(guildID) {
         return this.lavaLink.manager.players.get(guildID)
@@ -132,7 +135,5 @@ class Player {
             }
         })
     }
-
 }
-
 module.exports = Player

@@ -7,7 +7,7 @@ class OwO extends Command {
             name: "owo",
             description: "OwO what's this?",
             usage: "%owo",
-            aliases: [ ]
+            aliases: []
         });
         this.client = client
     }
@@ -17,12 +17,9 @@ class OwO extends Command {
         let json = await res.json();
 
         let embed = new this.Embed()
-        .setDescription(`OwO what's this?`)
-        .setImage(`https://rra.ram.moe${json.path}`)
-        
+          .setDescription(`OwO what's this?`)
+          .setImage(`https://rra.ram.moe${json.path}`)
         message.channel.createMessage(embed.build());
     }
-    
 }
-
 module.exports = OwO;

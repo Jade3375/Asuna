@@ -6,7 +6,7 @@ class Roll extends Command {
             name: "roll",
             description: "Roll a random number between 1 and 100!",
             usage: "%roll",
-            aliases: [ ]
+            aliases: []
         });
         this.client = client
     }

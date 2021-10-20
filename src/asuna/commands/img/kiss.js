@@ -4,9 +4,9 @@ class Kiss extends Command {
     constructor (client) {
         super(client, {
             name: "kiss",
-            description: "Kiss someone",
-            usage: "%kiss [user]",
-            aliases: [ ]
+            description: "Kiss someone!",
+            usage: "%kiss [@USER]",
+            aliases: []
         });
         this.client = client
     }
@@ -21,9 +21,10 @@ class Kiss extends Command {
         let kissed = message.mentions[0].id;
         let img = await this.client.weeb.sfw("kiss");
         let responses = ['How lewd!', 'EW...', 'Awwww cuteeeeeeeee.', 'Get a room.', 'Hawt!', 'Why?', 'C-Can I have one?']
+        
         let embed = new this.Embed()
           .setColor("#FF69B4")
-          .setDescription(`<@${message.author.id}> has kissed <@${kissed}>. ${responses[Math.floor(Math.random() * responses.length)]}`)
+          .setDescription(`<@${message.author.id}> has kissed <@${kissed}>! ${responses[Math.floor(Math.random() * responses.length)]}`)
           .setImage(img)
         this.client.globalEmbedData(embed)
         message.channel.createMessage(embed.build());

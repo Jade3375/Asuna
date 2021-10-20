@@ -4,9 +4,9 @@ class Tickle extends Command {
     constructor (client) {
         super(client, {
             name: "tickle",
-            description: "tickle someone",
-            usage: "%tickle @person",
-            aliases: [ ]
+            description: "Tickle someone!",
+            usage: "%tickle [@USER]",
+            aliases: []
         });
         this.client = client
     }
@@ -21,12 +21,11 @@ class Tickle extends Command {
         let mentioned = message.mentions[0].id;
         let res = await fetch("https://rra.ram.moe/i/r?type=tickle");
         let json = await res.json();
-
+        let responses = ['How lewd!', 'EW...', 'Awwww cuteeeeeeeee.', 'Get a room you two.', 'Hawt!', 'Why?', 'C-Can I have one?']
         
-        let responses = ['How lewd!', 'EW...', 'Awwww cuteeeeeeeee.', 'Get a room.', 'Hawt!', 'Why?', 'C-Can I have one?']
         let embed = new this.Embed()
           .setColor("#FF69B4")
-          .setDescription(`<@${message.author.id}> has tickled <@${mentioned}>. ${responses[Math.floor(Math.random() * responses.length)]}`)
+          .setDescription(`<@${message.author.id}> has tickled <@${mentioned}>! ${responses[Math.floor(Math.random() * responses.length)]}`)
           .setImage(`https://rra.ram.moe${json.path}`)
         this.client.globalEmbedData(embed)
         message.channel.createMessage(embed.build());

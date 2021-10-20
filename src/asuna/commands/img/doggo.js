@@ -5,7 +5,7 @@ class Doggo extends Command {
     constructor (client) {
         super(client, {
             name: "doggo",
-            description: "Random cute doggo pics",
+            description: "Get a random cut dog pic!",
             usage: "%doggo",
             aliases: ["dog"]
         });
@@ -18,12 +18,10 @@ class Doggo extends Command {
         let json = await res.json()
 
         let embed = new this.Embed()
-        .setDescription(`${user} have a cute doggo, Woof!`)
-        .setImage(json.url)
-
+          .setDescription(`Have a cute doggo! ${user}`)
+          .setImage(json.url)
         message.channel.createMessage(embed.build());
     }
     
 }
-
 module.exports = Doggo;

@@ -7,7 +7,7 @@ class Waifu extends Command {
             name: "waifu",
             description: "random waifus",
             usage: "%waifu",
-            aliases: [ ]
+            aliases: []
         });
         this.client = client
     }
@@ -18,12 +18,10 @@ class Waifu extends Command {
         let json = await res.json()
 
         let embed = new this.Embed()
-        .setDescription(`${user} here is your new waifu.`)
-        .setImage(json.url)
-
+          .setDescription(`Here is your new waifu ${user}!`)
+          .setImage(json.url)
         message.channel.createMessage(embed.build());
     }
     
 }
-
 module.exports = Waifu;
