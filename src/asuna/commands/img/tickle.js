@@ -5,7 +5,7 @@ class Tickle extends Command {
         super(client, {
             name: "tickle",
             description: "Tickle someone!",
-            usage: "%tickle [@USER]",
+            usage: "%tickle [@USER or USERID]",
             aliases: []
         });
         this.client = client

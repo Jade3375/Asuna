@@ -5,7 +5,7 @@ class Slap extends Command {
         super(client, {
             name: "slap",
             description: "Slap someone!",
-            usage: "%slap [@USER]",
+            usage: "%slap [@USER or USERID]",
             aliases: ["bitchslap"]
         });
         this.client = client

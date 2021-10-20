@@ -5,7 +5,7 @@ class Cookie extends Command {
         super(client, {
             name: "cookie",
             description: "Give someone a cookie!",
-            usage: "%cookie [@USER]",
+            usage: "%cookie [@USER or USERID]",
             aliases: []
         });
         this.client = client

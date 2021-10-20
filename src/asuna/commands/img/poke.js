@@ -5,7 +5,7 @@ class Poke extends Command {
         super(client, {
             name: "poke",
             description: "Poke someone!",
-            usage: "%poke [@USER]",
+            usage: "%poke [@USER or USERID]",
             aliases: ["jab"]
         });
         this.client = client

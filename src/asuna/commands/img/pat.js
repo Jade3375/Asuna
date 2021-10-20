@@ -5,7 +5,7 @@ class Pat extends Command {
         super(client, {
             name: "pat",
             description: "Give someone a pat!",
-            usage: "%pat [@USER]",
+            usage: "%pat [@USER or USERID]",
             aliases: ["headpat"]
         });
         this.client = client

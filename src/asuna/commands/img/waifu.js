@@ -5,7 +5,7 @@ class Waifu extends Command {
     constructor (client) {
         super(client, {
             name: "waifu",
-            description: "random waifus",
+            description: "Get a random anime waifu!",
             usage: "%waifu",
             aliases: []
         });

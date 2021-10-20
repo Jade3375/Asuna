@@ -5,7 +5,7 @@ class Hug extends Command {
         super(client, {
             name: "hug",
             description: "Hug someone!",
-            usage: "%hug [@USER]",
+            usage: "%hug [@USER or USERID]",
             aliases: []
         });
         this.client = client

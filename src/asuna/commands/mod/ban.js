@@ -5,7 +5,7 @@ module.exports = class extends Command {
         super(client, {
             name: "ban",
             description: "Bans a user from the guild.",
-            usage: "%ban [@USER]",
+            usage: "%ban [@USER or USERID]",
             aliases: []
         });
         this.client = client

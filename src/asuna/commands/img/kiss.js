@@ -5,7 +5,7 @@ class Kiss extends Command {
         super(client, {
             name: "kiss",
             description: "Kiss someone!",
-            usage: "%kiss [@USER]",
+            usage: "%kiss [@USER or USERID]",
             aliases: []
         });
         this.client = client
