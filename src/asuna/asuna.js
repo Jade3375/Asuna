@@ -35,7 +35,6 @@ class Asuna extends BaseClusterWorker {
         this.bot.clusterIF = {clusterID: this.clusterID, workerIDL: this.workerID}
         this.startBot()
         process.title = `Asuna - Cluster [${this.clusterID} | Worker ${this.workerID}]`
-        
     }
 
     async startBot() {
@@ -44,7 +43,5 @@ class Asuna extends BaseClusterWorker {
         this.bot.lavalink.load()
         this.bot.editStatus(this.bot.status, this.bot.game)
     }
-
 }
-
 module.exports = { BotWorker: Asuna, Eris }

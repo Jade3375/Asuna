@@ -4,7 +4,6 @@ const path = require("path")
 class Functions {
     constructor(Client) {
         this.Client = Client
-
         this.loadCommands()
     }
 
@@ -15,9 +14,8 @@ class Functions {
         props.conf.location = commandPath;
         props.help.category = folder;
 
-        if (props.init) {
+        if (props.init)
             props.init(this.Client);
-        }
 
         this.Client.commands.set(props.help.name, props);
         props.conf.aliases.forEach(alias => {

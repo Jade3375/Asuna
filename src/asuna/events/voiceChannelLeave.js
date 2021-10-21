@@ -10,13 +10,16 @@ module.exports = class {
         });
 
         let guildID = channel.guild.id
-
+        let player = this.client.musicManager.player.getPlayer(guildID)
+        
         if(member.id == this.client.user.id) return this.client.musicManager.player.DisconnectPlayer(guildID);
+        
         if(stop) return
 
         if(!this.client.musicManager.player.CheckPlayer(guildID)) return
-        let player = this.client.musicManager.player.getPlayer(guildID)
+        
         if(!player._connected) return
+        
         if(channel.id != player.channel) return
 
         this.client.musicManager.player.DisconnectPlayer(guildID); //disconnects player ending playback and clearing queue

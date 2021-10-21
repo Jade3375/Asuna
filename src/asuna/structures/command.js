@@ -37,10 +37,8 @@ class Command {
      */
     checkPerm(UID, message, permission) {
         if (message.channel.guild.members.get(UID).permissions.json.administrator == true) return true
-
         return message.member.guild.members.get(UID).permissions.json[permission]
     }
-
     /**
      * 
      * @param {String} mention String of the user mention
@@ -48,17 +46,13 @@ class Command {
      */
     getUserFromMention(mention) {
         if (!mention) return;
-    
+
         if (mention.startsWith('<@') && mention.endsWith('>')) {
             mention = mention.slice(2, -1);
-    
-            if (mention.startsWith('!')) {
+            if (mention.startsWith('!'))
                 mention = mention.slice(1);
-            }
-    
             return mention
         }
     }
-
 }
 module.exports = Command;

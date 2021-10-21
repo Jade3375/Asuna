@@ -22,7 +22,6 @@ class DB {
         this.ready = true
         return this.db;
     }
-
     /**
      * Get Row
      * @param {string} type server or user
@@ -30,7 +29,6 @@ class DB {
      * 
      * client.db.getRow('server', '633405040006135808')
      */
-
     getRow(type, search) {
         return new Promise(async (resolve, reject) => {
             let data = await this.db.collection(type).findOne({
@@ -41,7 +39,6 @@ class DB {
             });
         });
     }
-
     /**
      * Add Row
      * @param {string} type server or user
@@ -50,7 +47,6 @@ class DB {
      * 
      * client.db.addRow('server', '633405040006135808', {prefix: '%', premium: false)
      */
-
     addRow(type, id, data) {
         return new Promise(async (resolve, reject) => {
             let dataCheck = await this.db.collection(type).findOne({
@@ -71,7 +67,6 @@ class DB {
             });
         })
     }
-
     /**
      * editRow
      * @param {string} type server or user
@@ -80,12 +75,10 @@ class DB {
      * 
      * client.db.editRow('server', '633405040006135808', {prefix: 'owo'})
      */
-
     editRow(type, id, data) {
         return new Promise(async (resolve, reject) => {
             let setValue = {};
             let unsetValue = {};
-
             Object.keys(data).forEach(k => {
                 if (data[k] == null) {
                     unsetValue[k] = ""
@@ -93,12 +86,9 @@ class DB {
                     setValue[k] = data[k]
                 }
             })
-
             let valueObj = {}
             if (Object.keys(setValue).length > 0) valueObj['$set'] = setValue
             if (Object.keys(unsetValue).length > 0) valueObj['$unset'] = unsetValue
-
-
             let temp = await this.db.collection(type).updateOne({
                 id: id
             }, valueObj)
@@ -107,7 +97,6 @@ class DB {
             });
         });
     }
-
     /**
      * Delete Row
      * @param {string} type sever or user
@@ -115,7 +104,6 @@ class DB {
      * 
      * client.db.deleteRow('server', '633405040006135808')
      */
-
     async deleteRow(type, id) {
         return new Promise(async (resolve, reject) => {
             let dataCheck = await this.db.collection(type).findOne({

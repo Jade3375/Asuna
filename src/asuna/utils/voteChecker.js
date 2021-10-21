@@ -11,13 +11,13 @@ class voteChecker {
     }
 
     async checkVote(UID = String) {
-        if(this.bypass == 'true') return true
+        if (this.bypass == 'true') return true
 
         let user = await this.client.db.getRow("user", UID) 
-        if(user.data == null) return false
+        if (user.data == null) return false
 
         //if users have premium they bypass the vote lock
-        if(user.data.premium == true) return true
+        if (user.data.premium == true) return true
         
         //checks if voteTime has expired or not
         return user.data.voteTime > Date.now() 

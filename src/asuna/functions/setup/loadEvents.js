@@ -4,16 +4,13 @@ const path = require("path")
 class LoadEvents {
     constructor(client) {
         this.client = client
-
         this.loadEvents()
     }
     
     async loadEvents() {
         readdir(__dirname + '/../../events/', (err, files) => {
-            if(err) {
+            if (err)
                 console.log(err);
-
-            }
             else {
                 console.log(`loading ${files.length} events`);
                 files.forEach(file => {
