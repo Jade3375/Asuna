@@ -10,8 +10,8 @@ class Manager {
             send: (id, data) => {
                 let guild = this.client.bot.guilds.get(id);
 
-                if(guild) guild.shard.sendWS(data.op, data.d, false);
-                
+                if (guild)
+                    guild.shard.sendWS(data.op, data.d, false);
                 return
             }
         })

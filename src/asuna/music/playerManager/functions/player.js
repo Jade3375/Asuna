@@ -18,26 +18,26 @@ class Player {
         return await this.getPlayer(guildID).queueManager.searchSong(this.lavaLink, song)
     }
 
-    //checks if the player is playing
+    // checks if the player is playing
     IsPlaying(guildID) {
         return this.getPlayer(guildID).playing
     }
 
-    //checks if player is connected 
+    // checks if player is connected 
     IsConnected(guildID) {
         if(!this.getPlayer(guildID).channel) return false
         return true
     }
 
-    //checks to see if the player does exist
+    // checks to see if the player does exist
     CheckPlayer(guildID) {
         if(!this.getPlayer(guildID)) return false
         return true
     }
 
-    //creates the player for a guild
+    // creates the player for a guild
     CreatePlayer(guildID) {
-        if(this.getPlayer(guildID) != null) return
+        if (this.getPlayer(guildID) != null) return
         try {
             this.lavaLink.manager.create(guildID).then(this.getPlayer(guildID).queueManager = new this.Queue(guildID))
             this.getPlayer(guildID).setVolume(50)
@@ -57,15 +57,14 @@ class Player {
 
     //connects player to a channel
     async Connectplayer(guildID, channelID) {
-        if(this.getPlayer(guildID)) {
+        if (this.getPlayer(guildID))
             this.getPlayer(guildID).connect(channelID) //deafens the bot  on channel join cuz people be scared 
-        }
     }
 
     //disconnects player from a channel
     DisconnectPlayer(guildID, message) {
         let player = this.getPlayer(guildID)
-        if(player) {
+        if (player) {
             player.stop()
             player.queueManager.clearQueue()
             player._connected = false

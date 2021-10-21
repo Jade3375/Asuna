@@ -30,9 +30,9 @@ class queueManager {
 
         }
         else {
-            if(this.queue == null) return
+            if (this.queue == null) return
             this.queue.shift()
-            if(this.queue[0] == (null || undefined)) this.queue = null
+            if (this.queue[0] == (null || undefined)) this.queue = null
         }
     }
     //removes certen song from queue
@@ -49,7 +49,7 @@ class queueManager {
     }
     //will be used to load usrer playlists (currently not implomented)
     loadPlaylist(playlist) {
-        if(typeof playlist != Array) {
+        if (typeof playlist != Array) {
             console.error(`playlist argument is not typeof array`)
             return "Not A Playlist"
         }
@@ -74,18 +74,12 @@ class queueManager {
         let searchType = "scsearch:"
         let res
 
-        if(ytreg.test(song)) res = song
+        if (ytreg.test(song)) res = song
         else if (twreg.test(song)) res = song
         else res = `${searchType} ${song}`
 
 
         let search = await lavaLink.manager.search(res)
-        // if(search.loadType == "PLAYLIST_LOADED") {
-        //     search.forEach(element => {
-        //         this.queue.push(element)
-        //     });
-        //     return(search[0])
-        // }
         let vid = search.tracks[0]
         if(vid == (undefined || null)) return "novid"
         if(this.queue == null) this.queue = []

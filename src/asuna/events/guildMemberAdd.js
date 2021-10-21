@@ -8,10 +8,15 @@ module.exports = class {
 
     async run (guild, member, opt) {
         if(global.dev && !opt.run) return
+        
         this.client.users.clear()
+        
         if(!member) return;
+        
         let server = await this.client.db.getRow("server", guild.id)
+        
         if(!server.data || server.data == null) return
+        
         if(server.data.welcomeToggle == false || server.data.welcomeToggle == undefined) return
         
         this.welcome(guild, member, server)
@@ -19,10 +24,9 @@ module.exports = class {
 
     async welcome (guild, member, server) {
         this.client.welcomes ++
-        console.log(`[   Welcome   ] ${guild.id}`)
+        
         let channel = await guild.channels.get(server.data.welcomeChannel)
         let members = guild.memberCount + ""
-
         let welcomemsg = server.data.welcomeMessage.replace("{server}", guild.name).replace("{atuser}", `<@${member.id}>`).replace("{username}", member.username).replace("{joinpos}", guild.memberCount)
 
         switch (members.substr(-1)) {
@@ -47,11 +51,10 @@ module.exports = class {
 
         let canvas = createCanvas(500,200)
         let ctx = canvas.getContext('2d');
-
         let image = await loadImage(server.data.welcomeImage || "https://i.imgur.com/FijIayy.png")
+        
         ctx.drawImage(image, 0,0)
 
-            
         ctx.font = 'bold 24px "Helvet"'
         ctx.fillStyle = server.data.welcomeColor || "white"
         ctx.fillText(`Welcome ${member.username}!`, 160, 85)

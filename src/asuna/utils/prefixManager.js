@@ -6,10 +6,10 @@ class PrefixManager{
 
     async getPrefix(guild) {
         let PF = this.prefixes.get(guild)
-        if(PF) return PF
+        if (PF) return PF
 
         let row = await this.client.db.getRow("server", guild)
-        if(row.data == null) return this._createPrefix(guild)
+        if (row.data == null) return this._createPrefix(guild)
 
         PF = row.data.prefix
         this.prefixes.set(guild, PF)
@@ -22,7 +22,7 @@ class PrefixManager{
     }
 
     async cachePrefix(guild) {
-        if(!this.prefixes.has(guild.id)) return
+        if (!this.prefixes.has(guild.id)) return
         else {
             let row = await this.client.db.getRow("server", guild)
             if(row.data == null) return false
@@ -34,7 +34,7 @@ class PrefixManager{
     async changePrefix(guild, prefix) {
         let row = await this.client.db.getRow("server", guild)
 
-        if(row.data == null) return false
+        if (row.data == null) return false
 
         this.prefixes.set(guild, prefix)
         this.client.db.editRow("server", guild, {prefix: prefix})

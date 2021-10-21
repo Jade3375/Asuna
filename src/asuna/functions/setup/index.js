@@ -16,6 +16,3 @@ module.exports = class {
         this.event.loadEvents()
     }
 }
-
-
-
