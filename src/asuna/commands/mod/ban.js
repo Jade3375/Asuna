@@ -26,7 +26,7 @@ module.exports = class extends Command {
         
         args.shift()
 
-        this.client.kickGuildMember(message.guildID, usr, args.join(" ")).catch(err => {
+        this.client.banGuildMember(message.guildID, usr, args.join(" ")).catch(err => {
             message.channel.createMessage("I cannot ban this member! Is my role high enough?")
         })
     }
