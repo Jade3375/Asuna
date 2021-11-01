@@ -14,7 +14,7 @@ class Eval extends Command {
 
     async run (message, args) { // eslint-disable-line no-unused-vars
 
-        let owners = ["165811958828761089", "181072300815286275"];
+        let owners = ["165811958828761089", "181072300815286275", "258785659626455060"];
         if (!owners.includes(message.author.id)) return;
 
         try {
