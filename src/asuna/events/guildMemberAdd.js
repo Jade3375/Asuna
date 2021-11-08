@@ -55,6 +55,11 @@ module.exports = class {
         
         ctx.drawImage(image, 0,0)
 
+        //make memory leak smaller for now
+        image.onload = null
+        image.onerror = null
+        image.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==';
+
         ctx.font = 'bold 24px "Helvet"'
         ctx.fillStyle = server.data.welcomeColor || "white"
         ctx.fillText(`Welcome ${member.username}!`, 160, 85)
@@ -76,6 +81,10 @@ module.exports = class {
         image = await loadImage(member.avatarURL)
         ctx.drawImage(image, 54, 54, 92, 92)
         channel.createMessage(welcomemsg , {file: canvas.toBuffer("image/png"), name: "welcome.png"})
+        //make memory leak smaller for now
+        image.onload = null
+        image.onerror = null
+        image.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==';
         canvas = null
         ctx = null
         image = null
