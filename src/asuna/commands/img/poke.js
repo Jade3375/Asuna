@@ -25,7 +25,7 @@ class Poke extends Command {
         
         let embed = new this.Embed()
           .setColor("#FF69B4")
-          .setDescription(`<@${message.author.id}> has tickled <@${mentioned}>! ${responses[Math.floor(Math.random() * responses.length)]}`)
+          .setDescription(`<@${message.author.id}> has poked <@${mentioned}>! ${responses[Math.floor(Math.random() * responses.length)]}`)
           .setImage(`https://rra.ram.moe${json.path}`)
         this.client.globalEmbedData(embed)
         message.channel.createMessage(embed.build());
