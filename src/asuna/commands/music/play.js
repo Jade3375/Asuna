@@ -27,6 +27,7 @@ class Play extends Command {
 
         if(!player._connected) this.client.musicManager.player.Connectplayer(guildID, channel) // checks if player is connected, connects if false
 
+        console.log(guildData.data.yts)
         let search = await this.client.musicManager.player.searchSong(guildID, searchString, guildData.data.yts) // searches for song
         if(search == 'SongExistsInQueue') return message.channel.createMessage('Song already in queue') // lets user know if song is in queue
         if(search == 'NoSong') return message.channel.createMessage(`Couldn\'t find ${searchString} on youtube`) // if song could not be found, let the user know
