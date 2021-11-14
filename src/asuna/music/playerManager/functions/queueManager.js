@@ -68,7 +68,7 @@ class queueManager {
     }
 
     //searches the song on yt and gets first result (used for queue)
-    async searchSong(lavaLink, song) {
+    async searchSong(lavaLink, song, yts) {
         let ytreg = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/gm
         let twreg = /^(?:https?:\/\/)?(?:www\.|go\.)?twitch\.tv\/([A-z0-9_]+)($|\?)/gm
         let searchType = "scsearch:"
@@ -76,6 +76,7 @@ class queueManager {
 
         if (ytreg.test(song)) res = song
         else if (twreg.test(song)) res = song
+        else if(yts) res = `ytsearch ${song}`
         else res = `${searchType} ${song}`
 
 

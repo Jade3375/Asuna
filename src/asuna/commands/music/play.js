@@ -16,6 +16,8 @@ class Play extends Command {
         let channel = message.member.voiceState.channelID // check if user is in a vc
         if(!channel) return message.channel.createMessage('You might want to join a voice channel first')
 
+        let guildData = await this.client.db.getRow("server", guildID)
+
         let searchString = args.join(' '); 
         if (!searchString) return message.channel.createMessage('Hey! You need to search for something to play, baka!') // pretty clear whats happening here
 
@@ -25,7 +27,7 @@ class Play extends Command {
 
         if(!player._connected) this.client.musicManager.player.Connectplayer(guildID, channel) // checks if player is connected, connects if false
 
-        let search = await this.client.musicManager.player.searchSong(guildID, searchString) // searches for song
+        let search = await this.client.musicManager.player.searchSong(guildID, searchString, guildData.data.yts) // searches for song
         if(search == 'SongExistsInQueue') return message.channel.createMessage('Song already in queue') // lets user know if song is in queue
         if(search == 'NoSong') return message.channel.createMessage(`Couldn\'t find ${searchString} on youtube`) // if song could not be found, let the user know
 
@@ -37,7 +39,7 @@ class Play extends Command {
 
         let embed = new this.Embed()
         .setDescription(`[${search.info.title}](${search.info.uri}) has been added to the queue`)
-        .setFooter("Music will be moving to soundcloud soon")
+        .setFooter("Song Search by soundcloud")
         this.client.globalEmbedData(embed)
 
         message.channel.createMessage(embed.build())
