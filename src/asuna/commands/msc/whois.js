@@ -22,7 +22,7 @@ module.exports = class extends Command {
         let joinedAt = new Date(user.joinedAt).getTime() / 1000
         let Registered = new Date((user.id / 4194304) + 1420070400000).getTime() / 1000
         let roles = [] 
-        message.member.roles.forEach(r => { roles.push(`<@&${r.toString()}>`) })
+        message.member.roles.forEach(role => { roles.push(`<@&${role.toString()}>`) })
 
         let embed = new this.Embed()
         .setAuthor(user.user.username, user.avatarURL)
