@@ -76,7 +76,7 @@ class queueManager {
 
         if (ytreg.test(song)) res = song
         else if (twreg.test(song)) res = song
-        else if(yts) res = `ytsearch ${song}`
+        else if(yts) res = `ytsearch: ${song}`
         else res = `${searchType} ${song}`
 
 
