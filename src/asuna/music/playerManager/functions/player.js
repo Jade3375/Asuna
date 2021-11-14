@@ -14,8 +14,8 @@ class Player {
     }
 
     // queue can only  be accessed by player so this just calls the search function in the queue class
-    async searchSong(guildID, song){
-        return await this.getPlayer(guildID).queueManager.searchSong(this.lavaLink, song)
+    async searchSong(guildID, song, yts){
+        return await this.getPlayer(guildID).queueManager.searchSong(this.lavaLink, song, yts)
     }
 
     // checks if the player is playing
