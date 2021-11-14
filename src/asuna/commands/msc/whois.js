@@ -19,16 +19,16 @@ module.exports = class extends Command {
 
         if(!user || user == undefined) return message.channel.createMessage("Could not find user")
 
-        let joinedAt = new Date(user.joinedAt).toString().split("GMT")[0]
-        let Registered = new Date((user.id / 4194304) + 1420070400000).toString().split("GMT")[0]
+        let joinedAt = new Date(user.joinedAt).getTime() / 1000
+        let Registered = new Date((user.id / 4194304) + 1420070400000).getTime() / 1000
         let roles = [] 
         message.member.roles.forEach(r => { roles.push(`<@&${r.toString()}>`) })
 
         let embed = new this.Embed()
         .setAuthor(user.user.username, user.avatarURL)
         .setThumbnail(user.avatarURL)
-        .addField("Registered", `${Registered}`, true)
-        .addField("Joined At", `${joinedAt}`, true)
+        .addField("Registered", `<t:${Math.floor(Registered)}:R>`, true)
+        .addField("Joined At", `<t:${Math.floor(joinedAt)}:R>`, true)
         .addField("Roles", roles.toString().split(",").join(", "))
         //.addField("Permissions", Object.keys(user.permission.json).toString().split(",").join(", "))
 
