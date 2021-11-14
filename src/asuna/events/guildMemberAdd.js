@@ -1,5 +1,5 @@
-const { createCanvas, loadImage, registerFont } = require('canvas')
-const fs = require('fs')
+// const { createCanvas, loadImage, registerFont } = require('canvas')
+// const fs = require('fs')
 
 module.exports = class {
     constructor (client) {

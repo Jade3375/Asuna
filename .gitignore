@@ -2,3 +2,5 @@
 .env
 !/node_modules/eris-fleet/*
 node_modules
+output.txt
+package-lock.json

@@ -16,7 +16,7 @@ class LoadEvents {
                 files.forEach(file => {
                     let eventName = file.split(".")[0];
                     let event = new (require(__dirname + `/../../events/${file}`))(this.client);
-                    this.client.off(eventName, (...args) => event.run(...args));
+                    this.client.removeAllListeners(eventName);
                     this.client.on(eventName, (...args) => event.run(...args));
                     delete require.cache[require.resolve(__dirname + `/../../events/${file}`)];
                 })
