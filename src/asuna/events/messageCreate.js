@@ -53,3 +53,7 @@ function getUserFromMention(mention) {
         return mention
     }
 }
+
+function checkLinks(message, guildID) {
+    
+}

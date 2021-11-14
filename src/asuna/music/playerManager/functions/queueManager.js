@@ -74,9 +74,9 @@ class queueManager {
         let searchType = "scsearch:"
         let res
 
-        if (ytreg.test(song)) res = song
+        if(yts == true) res = `ytsearch: ${song}`
+        else if(ytreg.test(song)) res = song
         else if (twreg.test(song)) res = song
-        else if(yts) res = `ytsearch: ${song}`
         else res = `${searchType} ${song}`
 
 
