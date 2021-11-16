@@ -1,5 +1,6 @@
 const { createCanvas, loadImage, registerFont } = require('canvas')
 const fs = require('fs')
+let count = 0;
 
 class imageGen {
     constructor(canvasSize, colour) {
