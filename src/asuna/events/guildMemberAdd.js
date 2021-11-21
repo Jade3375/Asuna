@@ -58,6 +58,7 @@ module.exports = class {
         child.send({data: {
             canvasSize: [],
             colour: "",
+            memberCount: `${guild.memberCount}${members}`,
             BGImage: {
                 src: "",
                 location: [],
