@@ -5,12 +5,6 @@ const fs = require('fs')
 module.exports = class {
     constructor (client) {
         this.client = client;
-
-        this.controller = new AbortController()
-        this.signal = controller;
-        this.child
-
-        this.createChild()
     }
 
     async run (guild, member, opt) {
@@ -47,47 +41,22 @@ module.exports = class {
                 break;
         }
 
-        let controller = new AbortController();
-        let { signal } = controller;
-        let child = fork(__dirname + '/../util/imageGen.js', ['child'], { signal })
-        this.child.on("message", (msg) => {
+        let child = fork(__dirname + '/../utils/imageGen.js', ['child'])
+        child.on("message", (msg) => {
             channel.createMessage(welcomemsg , {file: Buffer.from(msg.img.data), name: "welcome.png"})
             child.removeAllListeners("message")
         })
 
-        child.send({data: {
-            canvasSize: [],
-            colour: "",
-            memberCount: `${guild.memberCount}${members}`,
-            BGImage: {
-                src: "",
-                location: [],
-            },
-            imgText: {
-                font: "",
-                location: [],
-                txt: ""
-            },
-            circle: {
-                size: 0,
-                location: []
-            },
-            circle2: {
-                size: 0,
-                location: []
-            },
-            userPF: {
-                src: "",
-                location: []
-            }
-        }})
-    }
-
-    createChild() {
-        this.child = fork(__dirname + '/../util/imageGen.js', ['child'], { signal })
-        this.child.on("close", () => {
-            this.child.removeAllListeners("close")
-            this.createChild()
+        //console.log(server.data.welcome)
+        child.send({
+                guildname:guild.name,
+                canvasSize: server.data.welcome.canvasSize, //2 element array of ints
+                colour: server.data.welcome.colour, //hex colour
+                memberCount: `${guild.memberCount}${members}`, 
+                BGImage: server.data.welcome.BGImage, //BG image data
+                Text: server.data.welcome.Text, //array of text objects
+                circles: server.data.welcome.circles, //array of circle objects
+                userPF: {location: server.data.welcome.userPF.location, SRC: member.user.avatarURL, name: member.username} //user pf location and size data
         })
     }
 
