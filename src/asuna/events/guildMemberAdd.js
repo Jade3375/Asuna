@@ -64,7 +64,6 @@ module.exports = class {
     }
 
     async reformat(data, guild, extra) {
-        console.log(data)
         let welcome = {
             message: data.welcomeMessage,
             canvasSize: [500, 200],
