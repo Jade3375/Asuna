@@ -16,14 +16,14 @@ module.exports = class extends Command {
     async run(message, args) {
 
         if (message.channel.nsfw){
-            fetch(`https://nekobot.xyz/api/image/pussy`)
+            fetch(`https://nekobot.xyz/api/image?type=pussy`)
             .then(res => res.json())
             .then(json => {
                 let responses = ['oh my thats lewd', 'ara ara', 'don\'t get all hot and bothered now']
                 let embed = new this.Embed()
                 .setColor("#FF69B4")
                 .setDescription(`<@${message.author.id}> enjoy. ${responses[Math.floor(Math.random() * responses.length)]}`)
-                .setImage(json.url)
+                .setImage(json.message)
                 this.client.globalEmbedData(embed)
                 message.channel.createMessage(embed.build())
             })
