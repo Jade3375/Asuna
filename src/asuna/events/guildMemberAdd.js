@@ -17,10 +17,13 @@ module.exports = class {
         let server = await this.client.db.getRow("server", guild.id)
         
         if(!server.data || server.data == null) return
-        
-        if(server.data.welcomeToggle == false || server.data.welcomeToggle == undefined) return
 
-        let channel = await guild.channels.get(server.data.welcomeChannel)
+        if(!server.data.welcome) this.reformat(server.data, guild.id, {guild, member, opt})
+        
+        if(server.data.welcometoggle == false|| server.data.welcome.toggle == false || server.data.welcome.toggle == undefined) return
+        this.client.welcomes ++
+        
+        let channel = await guild.channels.get(server.data.welcome.channel)
         let members = guild.memberCount + ""
         let welcomemsg = server.data.welcomeMessage.replace("{server}", guild.name).replace("{atuser}", `<@${member.id}>`).replace("{username}", member.username).replace("{joinpos}", guild.memberCount)
 
@@ -54,10 +57,31 @@ module.exports = class {
                 colour: server.data.welcome.colour, //hex colour
                 memberCount: `${guild.memberCount}${members}`, 
                 BGImage: server.data.welcome.BGImage, //BG image data
-                Text: server.data.welcome.Text, //array of text objects
+                Text: server.data.welcome.text, //array of text objects
                 circles: server.data.welcome.circles, //array of circle objects
                 userPF: {location: server.data.welcome.userPF.location, SRC: member.user.avatarURL, name: member.username} //user pf location and size data
         })
+    }
+
+    async reformat(data, guild, extra) {
+        console.log(data)
+        let welcome = {
+            message: data.welcomeMessage,
+            canvasSize: [500, 200],
+            colour: data.welcomeColor,
+            BGImage: {
+                src: data.welcomeImage,
+                location: [0,0]
+            },
+            text: [{text: "welcome {username}", location: [160, 85], font: 'bold 24px "Helvet"'}, {text: "You are the {memberCount} member!", location: [160, 115], font: 'medium 24px "Helvet"'}],
+            circles:[{size: 48, location: [100,100]},{size: 46, location: [100,100]}],
+            userPF: {location: [54,54,92,92]},
+            channel: data.welcomeChannel,
+            toggle: data.welcomeToggle
+        }
+
+        await this.client.db.editRow("server", guild, {welcome: welcome})
+        this.run(extra.guild, extra.member, extra.opt)
     }
 
 }
