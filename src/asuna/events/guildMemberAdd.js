@@ -18,7 +18,7 @@ module.exports = class {
         
         if(!server.data || server.data == null) return
 
-        if(!server.data.welcome) this.reformat(server.data, guild.id, {guild, member, opt})
+        if(!server.data.welcome && server.data.welcometoggle == true) this.reformat(server.data, guild.id, {guild, member, opt})
         
         if(server.data.welcometoggle == false|| server.data.welcome.toggle == false || server.data.welcome.toggle == undefined) return
         this.client.welcomes ++
