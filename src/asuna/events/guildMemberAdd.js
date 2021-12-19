@@ -20,7 +20,7 @@ module.exports = class {
 
         if(!server.data.welcome && server.data.welcometoggle == true) this.reformat(server.data, guild.id, {guild, member, opt})
         
-        if(server.data.welcometoggle == false|| server.data.welcome.toggle == false || server.data.welcome.toggle == undefined) return
+        if(!server.data.welcome || server.data.welcometoggle == false || server.data.welcome.toggle == false || server.data.welcome.toggle == undefined) return
         this.client.welcomes ++
         
         let channel = await guild.channels.get(server.data.welcome.channel)
