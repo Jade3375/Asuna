@@ -18,7 +18,7 @@ module.exports = class extends Command {
         if(!this.checkPerm(message.author.id, message, perm)) return message.channel.createMessage(`You do not have the *${perm}* permission`)
 
         let row = await this.client.db.getRow("server", message.guildID);
-        if (row.data == null) this.client.db.addRow("server", guild, {prefix: '%', logChannel: ' ', welcomeChannel: ' ', welcomeMessage: ` `, welcomeImage: ` `, welcomeToggle : false ,premium: false})
+        if (row.data == null) this.client.db.addRow("server", guild, {prefix: '%'})
         
         let embed = new this.Embed();
 
@@ -27,7 +27,8 @@ module.exports = class extends Command {
         embed.setDescription("Image has been updated")
         embed.setImage(message.attachments[0].url)
         this.client.globalEmbedData(embed)
-        this.client.db.editRow("server", message.guildID, {welcomeImage: message.attachments[0].url}).catch(e => {
+        row.data.welcome.BGImage = {BGImage: {SRC:message.attachments[0].url, location:[0,0]}}
+        this.client.db.editRow("server", message.guildID, row.data).catch(e => {
             message.channel.createMessage("oops looks like an error occured if this continues let the developers know")
             console.error(`DB error: ${e}`)
         })

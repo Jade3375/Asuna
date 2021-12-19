@@ -29,8 +29,9 @@ module.exports = class extends Command {
 
         embed.setTitle("toggled welcome")
         embed.setDescription(`welcome messages are now ${toggle}`)
+        row,data.welcome.toggle = welcomeToggle
         this.client.globalEmbedData(embed)
-        this.client.db.editRow("server", message.guildID, {welcomeToggle: !guild.welcomeToggle}).catch(e => {
+        this.client.db.editRow("server", message.guildID, row.data).catch(e => {
             message.channel.createMessage("oops looks like an error occured if this continues let the developers know")
             console.error(`DB error: ${e}`)
         })
