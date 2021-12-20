@@ -1,5 +1,3 @@
-const { ResumeToken } = require('mongodb');
-
 /**
  * @class Player 
  * @param manager The lavalink manager
@@ -83,7 +81,7 @@ class Player {
             player.skips = 0
             player.skippers = new Map()
             let song = await player.queueManager.getSong()
-            if(!song || song == undefined) return
+            if(!song) return
             player.play(song)
         } catch (error) {
            player.queueManager.NextSong()

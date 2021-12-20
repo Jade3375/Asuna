@@ -1,5 +1,4 @@
 let Command = require("../../structures/command");
-let util = require('util')
 
 module.exports = class extends Command {
     constructor(client) {

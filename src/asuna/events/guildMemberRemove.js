@@ -1,5 +1,3 @@
-const { createCanvas, loadImage, registerFont } = require('canvas')
-
 module.exports = class {
     constructor (client) {
         this.client = client;

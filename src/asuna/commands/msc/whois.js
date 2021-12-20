@@ -17,7 +17,7 @@ module.exports = class extends Command {
 
         if(user == undefined) user = message.member
 
-        if(!user || user == undefined) return message.channel.createMessage("Could not find user")
+        if(!user) return message.channel.createMessage("Could not find user")
 
         let joinedAt = new Date(user.joinedAt).getTime() / 1000
         let Registered = new Date((user.id / 4194304) + 1420070400000).getTime() / 1000

@@ -13,8 +13,6 @@ module.exports = class extends Command {
 
 
     async run(message, args) {
-        let stats = await this.client.ipc.getStats()
-
         let embed = new this.Embed()
         .setTitle("Bot Voting")
         .setDescription(`Feel free to vote for asuna on [top.gg](https://top.gg/bot/420907324945989632) and gain voting benefits `)

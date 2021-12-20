@@ -1,5 +1,4 @@
-const { readdirSync, readdir } = require('fs');
-const path = require("path")
+const { readdir } = require('fs');
 
 class LoadEvents {
     constructor(client) {

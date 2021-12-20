@@ -1,6 +1,4 @@
-const { createCanvas, loadImage, registerFont } = require('canvas')
 const { fork } = require("child_process");
-const fs = require('fs')
 
 module.exports = class {
     constructor (client) {
@@ -16,7 +14,7 @@ module.exports = class {
         
         let server = await this.client.db.getRow("server", guild.id)
         
-        if(!server.data || server.data == null) return
+        if(!server.data) return
 
         if(!server.data.welcome && server.data.welcometoggle == true) this.reformat(server.data, guild.id, {guild, member, opt})
         

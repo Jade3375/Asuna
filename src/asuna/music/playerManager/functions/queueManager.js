@@ -42,9 +42,7 @@ class queueManager {
 
     //imported shuffle-array cuz im lazy
     shuffle() {
-        let array = this.queue
-        shuffle(array)
-        this.queue = array
+        shuffle(this.queue)
         return "OK"
     }
     //will be used to load usrer playlists (currently not implomented)

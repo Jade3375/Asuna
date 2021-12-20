@@ -52,7 +52,7 @@ class DB {
             let dataCheck = await this.db.collection(type).findOne({
                 id: id
             })
-            if (dataCheck !== null) reject({
+            if (dataCheck !== null) return reject({
                 error: 'Row Already Exists',
                 data: dataCheck
             })
@@ -112,7 +112,7 @@ class DB {
             if (dataCheck == null) return {
                 error: 'Row Doesnt Exists',
             }
-            let temp = await this.db.collection(type).deleteOne({
+            await this.db.collection(type).deleteOne({
                 id: id
             })
             resolve({

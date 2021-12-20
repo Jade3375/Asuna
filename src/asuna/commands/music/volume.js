@@ -22,7 +22,7 @@ module.exports = class extends Command {
 
         if(!args[0]) return message.channel.createMessage("please enter a Number between 1 and 200")
 
-        if(parseInt(args[0]) == NaN || parseInt(args[0]) == undefined) return message.channel.createMessage("please enter a Number between 1 and 200")
+        if(isNaN(parseInt(args[0]))) return message.channel.createMessage("please enter a Number between 1 and 200")
 
         if(args[1] == "override") {
             if(parseInt(args[0]) > 1000 || parseInt(args[0]) < 1) return message.channel.createMessage("override limit is 1000")
