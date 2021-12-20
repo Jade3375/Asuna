@@ -1,3 +1,5 @@
+[![DeepScan grade](https://deepscan.io/api/teams/16314/projects/19546/branches/510446/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=16314&pid=19546&bid=510446) [![Quality score](https://api.codiga.io/project/30497/score/svg)](https://app.codiga.io/public/project/30497/Asuna/dashboard)
+
 # Asuna
 
 Asuna is an Eris Discord bot with moderation, music and anime at the centre of it.
