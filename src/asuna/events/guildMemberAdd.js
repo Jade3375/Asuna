@@ -21,7 +21,7 @@ module.exports = class {
         if(!server.data.welcome || server.data.welcometoggle == false || server.data.welcome.toggle == false || server.data.welcome.toggle == undefined) return
         this.client.welcomes ++
         
-        let channel = await guild.channels.get(server.data.welcome.channel)
+        let channel = await guild.channels.get(server.data.welcome.channel || server.data.welcomeChannel)
         let members = guild.memberCount + ""
         let welcomemsg = server.data.welcomeMessage.replace("{server}", guild.name).replace("{atuser}", `<@${member.id}>`).replace("{username}", member.username).replace("{joinpos}", guild.memberCount)
 
@@ -48,7 +48,6 @@ module.exports = class {
             child.removeAllListeners("message")
         })
 
-        //console.log(server.data.welcome)
         child.send({
                 guildname:guild.name,
                 canvasSize: server.data.welcome.canvasSize || [500, 200], //2 element array of ints
