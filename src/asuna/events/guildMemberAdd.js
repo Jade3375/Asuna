@@ -51,13 +51,13 @@ module.exports = class {
         //console.log(server.data.welcome)
         child.send({
                 guildname:guild.name,
-                canvasSize: server.data.welcome.canvasSize, //2 element array of ints
-                colour: server.data.welcome.colour, //hex colour
+                canvasSize: server.data.welcome.canvasSize || [500, 200], //2 element array of ints
+                colour: server.data.welcome.colour || "#FFFFFF", //hex colour
                 memberCount: `${guild.memberCount}${members}`, 
-                BGImage: server.data.welcome.BGImage, //BG image data
-                Text: server.data.welcome.text, //array of text objects
-                circles: server.data.welcome.circles, //array of circle objects
-                userPF: {location: server.data.welcome.userPF.location, SRC: member.user.avatarURL, name: member.username} //user pf location and size data
+                BGImage: server.data.welcome.BGImage || "https://cdn.discordapp.com/attachments/436996481971388418/884475426204950598/FijIayy.png", //BG image data
+                Text: server.data.welcome.text || [{text: "welcome {username}", location: [160, 85], font: 'bold 24px "Helvet"'}, {text: "You are the {memberCount} member!", location: [160, 115], font: 'medium 24px "Helvet"'}], //array of text objects
+                circles: server.data.welcome.circles || [{size: 48, location: [100,100]},{size: 46, location: [100,100]}], //array of circle objects
+                userPF: {location: server.data.welcome.userPF.location || [54,54,92,92], SRC: member.user.avatarURL, name: member.username} //user pf location and size data
         })
     }
 
