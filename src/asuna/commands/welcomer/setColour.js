@@ -18,6 +18,7 @@ module.exports = class extends Command {
 
         let row = await this.client.db.getRow("server", message.guildID);
         if (row.data == null) this.client.db.addRow("server", message.guildID, {prefix: '%'})
+        if(row.data.welcome == null) row.data.welcome = {}
         
         let embed = new this.Embed();
         let reg = /#[0-9a-f]{6}/

@@ -21,6 +21,8 @@ module.exports = class extends Command {
             this.client.db.addRow("server",  message.guildID, {prefix: '%', logChannel: ' ', welcomeChannel: ' ', welcomeMessage: ` `, welcomeImage: ` `, welcomeToggle : false ,premium: false})
             row = await this.client.db.getRow("server", message.guildID);
         }
+
+        if(row.data.welcome == null) row.data.welcome = {}
         
         let guild = row.data
         let embed = new this.Embed();
