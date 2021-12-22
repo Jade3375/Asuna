@@ -35,7 +35,7 @@ module.exports = class extends Command {
 
         embed.setTitle("toggled welcome")
         embed.setDescription(`welcome messages are now ${toggle}`)
-        row.data.welcome.toggle = toggle
+        row.data.welcome.toggle = row.data.welcome.toggle ? false : true
         this.client.globalEmbedData(embed)
         this.client.db.editRow("server", message.guildID, row.data).catch(e => {
             message.channel.createMessage("oops looks like an error occured if this continues let the developers know")
