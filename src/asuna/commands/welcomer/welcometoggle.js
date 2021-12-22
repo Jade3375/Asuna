@@ -29,11 +29,15 @@ module.exports = class extends Command {
         if(!guild.welcome) guild.welcome = {}
 
 
-        if(guild.welcomeToggle === true|| guild.welcome.toggle === true || !guild.welcome.toggle) toggle = "off"
+        if(guild.welcome.toggle == true) toggle = "off"
         else toggle = "on"
 
         embed.setTitle("toggled welcome")
         embed.setDescription(`welcome messages are now ${toggle}`)
+
+        if(toggle == "on") toggle = true
+        else toggle = false
+
         row.data.welcome.toggle = row.data.welcome.toggle ? false : true
         this.client.globalEmbedData(embed)
         this.client.db.editRow("server", message.guildID, row.data).catch(e => {
