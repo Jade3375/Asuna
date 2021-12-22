@@ -17,6 +17,8 @@ module.exports = class {
         if(!server.data) return
 
         if(!server.data.welcome || !server.data.welcome.userPF) this.reformat(server.data, guild.id, {guild, member, opt})
+
+        if(server.data.welcometoggle && this.client.cmdlogger) console.log(server.data.welcometoggle)
         
         if(!server.data.welcome || server.data.welcometoggle == false || server.data.welcome.toggle == false || server.data.welcome.toggle == undefined) return
         this.client.welcomes ++
