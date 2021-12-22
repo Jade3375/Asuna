@@ -16,7 +16,7 @@ module.exports = class {
         
         if(!server.data) return
 
-        if(!server.data.welcome || !server.data.welcome.userPF) this.reformat(server.data, guild.id, {guild, member, opt})
+        if(!server.data.welcome || !server.data.welcome.userPF) return this.reformat(server.data, guild.id, {guild, member, opt})
         
         if(server.data.welcome.toggle == false || server.data.welcome.toggle == undefined) return
         this.client.welcomes ++
@@ -61,7 +61,7 @@ module.exports = class {
     }
 
     async reformat(data, guild, extra) {
-        if(data.BGImage == null) data.BGImage = data.welcome.BGImage.src
+        if(data.BGImage == null) data.BGImage = data.welcome.BGImage.src || "https://cdn.discordapp.com/attachments/436996481971388418/884475426204950598/FijIayy.png"
         let welcome = {
             message: data.welcomeMessage ? data.welcomeMessage : data.welcome.message,
             canvasSize: [500, 200],
