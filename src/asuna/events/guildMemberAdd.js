@@ -25,7 +25,7 @@ module.exports = class {
         
         let channel = await guild.channels.get(server.data.welcome.channel || server.data.welcomeChannel)
         let members = guild.memberCount + ""
-        let welcomemsg = server.data.welcomeMessage.replace("{server}", guild.name).replace("{atuser}", `<@${member.id}>`).replace("{username}", member.username).replace("{joinpos}", guild.memberCount)
+        let welcomemsg = server.data.welcome.message.replace("{server}", guild.name).replace("{atuser}", `<@${member.id}>`).replace("{username}", member.username).replace("{joinpos}", guild.memberCount)
 
         switch (members.substr(-1)) {
             case "1":
