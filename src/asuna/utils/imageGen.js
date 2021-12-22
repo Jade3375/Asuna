@@ -57,15 +57,17 @@ class imageGen {
 }
 
 process.on("message",async data => {
+    
     let imggen = new imageGen(data.canvasSize, data.colour)
     await imggen.imageLoad(data.BGImage.src, data.BGImage.location)
 
+    console.log("5")
     if(data.Text) {
         await data.Text.forEach(item => {
             imggen.drawText(item.font, item.text, item.location, data.memberCount, data.guildname, data.userPF.name)
         });
     }
-
+    console.log("aaaaa")
     if(data.circles) {
         await data.circles.forEach(item => {
             imggen.drawCircle(item.size, item.location)

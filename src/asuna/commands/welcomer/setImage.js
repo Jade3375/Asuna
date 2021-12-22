@@ -27,7 +27,7 @@ module.exports = class extends Command {
         embed.setDescription("Image has been updated")
         embed.setImage(message.attachments[0].url)
         this.client.globalEmbedData(embed)
-        row.data.welcome.BGImage = {BGImage: {SRC:message.attachments[0].url, location:[0,0]}}
+        row.data.welcome.BGImage = {src :message.attachments[0].url, location:[0,0]}
         this.client.db.editRow("server", message.guildID, row.data).catch(e => {
             message.channel.createMessage("oops looks like an error occured if this continues let the developers know")
             console.error(`DB error: ${e}`)
