@@ -61,7 +61,7 @@ module.exports = class {
     }
 
     async reformat(data, guild, extra) {
-        if(data.BGImage == null) data.BGImage = data.welcome.BGImage.src || "https://cdn.discordapp.com/attachments/436996481971388418/884475426204950598/FijIayy.png"
+        if(data.welcomeImage == null) data.welcomeImage = data.welcome.BGImage.src || "https://cdn.discordapp.com/attachments/436996481971388418/884475426204950598/FijIayy.png"
         let welcome = {
             message: data.welcomeMessage ? data.welcomeMessage : data.welcome.message,
             canvasSize: [500, 200],
