@@ -17,7 +17,7 @@ class PrefixManager{
     }
 
     async _createPrefix(guild) {
-        this.client.db.addRow("server", guild, {prefix: '%', logChannel: ' ', welcomeChannel: ' ', welcomeMessage: ` `, welcomeImage: ` `, welcomeToggle : false ,premium: false})
+        this.client.db.addRow("server", guild, {prefix: '%'})
         return "%"
     }
 
