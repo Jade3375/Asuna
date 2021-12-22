@@ -29,7 +29,7 @@ module.exports = class extends Command {
         
 
         embed.setTitle("set colour")
-        embed.setDescription(`welcome colur set to <${welcomeColor}>`)
+        embed.setDescription(`welcome colur set to \\<${welcomeColor}>`)
         embed.setColor(welcomeColor)
         row.data.welcome.colour = welcomeColor
         this.client.db.editRow("server", message.guildID, row.data).catch(e => {

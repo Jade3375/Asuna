@@ -26,12 +26,16 @@ module.exports = class extends Command {
         let embed = new this.Embed();
         let toggle
 
-        if(guild.welcome.toggle == true) toggle = "off"
+        if(!guild.welcome) guild.welcome = {}
+
+        console.log(guild)
+
+        if(guild.welcomeToggle === true|| guild.welcome.toggle === true || !guild.welcome.toggle) toggle = "off"
         else toggle = "on"
 
         embed.setTitle("toggled welcome")
         embed.setDescription(`welcome messages are now ${toggle}`)
-        row.data.welcome.toggle = welcomeToggle
+        row.data.welcome.toggle = toggle
         this.client.globalEmbedData(embed)
         this.client.db.editRow("server", message.guildID, row.data).catch(e => {
             message.channel.createMessage("oops looks like an error occured if this continues let the developers know")
