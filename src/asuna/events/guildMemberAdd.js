@@ -5,7 +5,7 @@ module.exports = class {
         this.client = client;
     }
 
-    async run (guild, member, opt) {
+    async run (guild, member, opt = {run: false}) {
         if(global.dev && !opt.run) return
         
         this.client.users.clear()
