@@ -61,19 +61,20 @@ module.exports = class {
     }
 
     async reformat(data, guild, extra) {
+        if(data.BGImage == null) data.BGImage = data.welcome.BGImage.src
         let welcome = {
-            message: data.welcomeMessage,
+            message: data.welcomeMessage ? data.welcomeMessage : data.welcome.message,
             canvasSize: [500, 200],
-            colour: data.welcomeColor,
+            colour: data.welcomeColor ? data.welcomeColor : data.welcome.colour,
             BGImage: {
-                src: data.welcomeImage,
+                src: data.welcomeImage ? data.welcomeImage : data.welcome.BGImage.src,
                 location: [0,0]
             },
             text: [{text: "welcome {username}", location: [160, 85], font: 'bold 24px "Helvet"'}, {text: "You are the {memberCount} member!", location: [160, 115], font: 'medium 24px "Helvet"'}],
             circles:[{size: 48, location: [100,100]},{size: 46, location: [100,100]}],
             userPF: {location: [54,54,92,92]},
-            channel: data.welcomeChannel,
-            toggle: data.welcomeToggle ? data.welcomeToggle : false
+            channel: data.welcomeChannel ? data.welcomeChannel : data.welcome.channel,
+            toggle: data.welcomeToggle ?  data.welcomeToggle : data.welcome.toggle
         }
 
         await this.client.db.editRow("server", guild, {welcome: welcome})
