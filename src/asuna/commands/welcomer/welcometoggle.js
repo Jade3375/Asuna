@@ -28,7 +28,6 @@ module.exports = class extends Command {
 
         if(!guild.welcome) guild.welcome = {}
 
-        console.log(guild)
 
         if(guild.welcomeToggle === true|| guild.welcome.toggle === true || !guild.welcome.toggle) toggle = "off"
         else toggle = "on"

@@ -20,7 +20,7 @@ module.exports = class {
 
         if(server.data.welcomeToggle && this.client.cmdlogger) console.log(server.data.welcomeToggle)
         
-        if(!server.data.welcome || server.data.welcomeToggle == false || server.data.welcome.toggle == false || server.data.welcome.toggle == undefined) return
+        if(!server.data.welcome || server.data.welcome.toggle == false || server.data.welcome.toggle == undefined) return
         this.client.welcomes ++
         
         let channel = await guild.channels.get(server.data.welcome.channel || server.data.welcomeChannel)
