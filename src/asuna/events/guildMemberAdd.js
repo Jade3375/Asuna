@@ -75,7 +75,7 @@ module.exports = class {
             circles:[{size: 48, location: [100,100]},{size: 46, location: [100,100]}],
             userPF: {location: [54,54,92,92]},
             channel: data.welcomeChannel,
-            toggle: data.welcomeToggle
+            toggle: data.welcomeToggle ? data.welcomeToggle : false
         }
 
         await this.client.db.editRow("server", guild, {welcome: welcome})
