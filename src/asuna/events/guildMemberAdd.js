@@ -61,11 +61,12 @@ module.exports = class {
     }
 
     async reformat(data, guild, extra) {
+        try {
         if(data.welcomeImage == null) data.welcomeImage = data.welcome.BGImage.src || "https://cdn.discordapp.com/attachments/436996481971388418/884475426204950598/FijIayy.png"
         let welcome = {
             message: data.welcomeMessage ? data.welcomeMessage : data.welcome.message,
             canvasSize: [500, 200],
-            colour: data.welcomeColor ? data.welcomeColor : data.welcome.colour,
+            colour: data.welcomeColor ? data.welcomeColor : data.welcome.colour || "#FFFFFF",
             BGImage: {
                 src: data.welcomeImage ? data.welcomeImage : data.welcome.BGImage.src,
                 location: [0,0]
@@ -73,12 +74,15 @@ module.exports = class {
             text: [{text: "welcome {username}", location: [160, 85], font: 'bold 24px "Helvet"'}, {text: "You are the {memberCount} member!", location: [160, 115], font: 'medium 24px "Helvet"'}],
             circles:[{size: 48, location: [100,100]},{size: 46, location: [100,100]}],
             userPF: {location: [54,54,92,92]},
-            channel: data.welcomeChannel ? data.welcomeChannel : data.welcome.channel,
-            toggle: data.welcomeToggle ?  data.welcomeToggle : data.welcome.toggle
+            channel: data.welcomeChannel ? data.welcomeChannel : data.welcome.channel || "",
+            toggle: data.welcomeToggle ?  data.welcomeToggle : data.welcome.toggle || false
         }
 
         await this.client.db.editRow("server", guild, {welcome: welcome})
         this.run(extra.guild, extra.member, extra.opt)
+        } catch (error) {
+            
+        }
     }
 
 }
