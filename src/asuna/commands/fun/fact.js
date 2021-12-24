@@ -1,4 +1,5 @@
 let Command = require('../../structures/command');
+let zLib = require('zlib');
 
 class Fact extends Command {
     constructor (client) {
@@ -19,6 +20,20 @@ class Fact extends Command {
         let embed = new this.Embed()
           .setDescription(`Your random fact is **${fact}**!`)
         message.channel.createMessage(embed.build())
+    }
+
+    async slash(inter) {
+        let res = await fetch("https://nekos.life/api/v2/fact")
+        console.log(res)
+        //let json = res.json()
+        zLib.unzip(res.body._outBuffer, (err, buf) => {
+            console.log(buf)
+          })
+        //let fact = json.fact
+
+        let embed = new this.Embed()
+          .setDescription(`Your random fact is **${JSON.stringify(res.json())}**!`)
+        inter.createMessage(embed.build())
     }
 }
 module.exports = Fact;
