@@ -1,3 +1,4 @@
+const { CommandInteraction } = require('eris');
 let Command = require('../../structures/command');
 
 class BallOf8 extends Command {
@@ -32,6 +33,26 @@ class BallOf8 extends Command {
         }
 
         else message.channel.createMessage("What is your question? {usage %8ball question}") // If no question send this message to chat
+    }
+
+    async slash(inter){ 
+        let eightball = [ 
+            "Yes!",
+            "No...",
+            "Maybe?",
+            "Probably.",
+            "I don't think so.",
+            "Never!",
+            "You can try...",
+            "Up to you!",
+            "OH HELLL NAW!!!!!!",
+        ]
+            let embed = new this.Embed()
+              .setTitle("8-ball knows all")
+              .addField("Question", inter.data.options[0].value)
+              .addField("The answer is...", eightball[Math.floor(Math.random() * eightball.length).toString(16)] )
+            inter.createMessage(embed.build())
+
     }
 }
 module.exports = BallOf8;
