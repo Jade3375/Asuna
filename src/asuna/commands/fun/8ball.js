@@ -51,7 +51,8 @@ class BallOf8 extends Command {
               .setTitle("8-ball knows all")
               .addField("Question", inter.data.options[0].value)
               .addField("The answer is...", eightball[Math.floor(Math.random() * eightball.length).toString(16)] )
-            inter.createMessage(embed.build())
+              .setTimestamp()
+              inter.createMessage(embed.build())
 
     }
 }

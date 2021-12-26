@@ -46,19 +46,71 @@ class Play extends Command {
         
     }
 
-    async play(search, message, guildID) {
+    async play(search, message, guildID, isInteraction) {
         try {
-            this.client.musicManager.player.PlayTrack(guildID, message.channel.id)// if the player isn't playing start playing
+
+            let channelID
+            let channelObj
+            if(isInteraction) {
+                channelObj = isInteraction
+                channelID = isInteraction.channel.id
+            } else {
+                channelObj = message.channel
+                channelID = message.channel.id
+            }
+            this.client.musicManager.player.PlayTrack(guildID, channelID)
             let embed = new this.Embed()
             .addField('Now Playing', `[${search.info.title}](${search.info.uri})`)
             this.client.globalEmbedData(embed)
-    
-            message.channel.createMessage(embed.build()).then(m => {
-                this.client.lavalink.manager.players.get(guildID).msg = m.id
-            })
+            
+            if(isInteraction) {
+                await channelObj.acknowledge()
+                channelObj.createFollowup(embed.build()).then(m => {
+                    this.client.lavalink.manager.players.get(guildID).msg = m.id
+                })
+            } else {
+                channelObj.createMessage(embed.build()).then(m => {
+                    this.client.lavalink.manager.players.get(guildID).msg = m.id
+                })
+            }
         } catch (error) {
-            message.channel.createMessage("an error occured trying to play / get track info")
+            console.log(error)
+            channelObj.createMessage("an error occured trying to play / get track info")
+            
         }
+    }
+
+    async slash(inter) {
+        let guildID = inter.guildID
+        let channel = inter.member.voiceState.channelID // check if user is in a vc
+        if(!channel) return inter.createMessage('You might want to join a voice channel first')
+
+        let guildData = await this.client.db.getRow("server", guildID)
+
+        let searchString = inter.data.options[0].value
+        
+        if(!this.client.musicManager.player.CheckPlayer(guildID)) this.client.musicManager.player.CreatePlayer(guildID) // checks if the guild already has a player, makes one if false
+
+        let player = this.client.musicManager.player.getPlayer(guildID)
+
+        if(!player._connected) this.client.musicManager.player.Connectplayer(guildID, channel) // checks if player is connected, connects if false
+
+        let search = await this.client.musicManager.player.searchSong(guildID, searchString, guildData.data.yts) // searches for song
+        if(search == 'SongExistsInQueue') return inter.createMessage('Song already in queue') // lets user know if song is in queue
+        if(search == 'NoSong') return inter.createMessage(`Couldn\'t find ${searchString} on YouTube`) // if song could not be found, let the user know
+
+        //if(!this.client.musicManager.player.IsPlaying(guildID) && search.) return this.play(search, message)
+        
+        if(search == "novid") return inter.createMessage("No song with this title was found.")
+        
+        if(!this.client.musicManager.player.IsPlaying(guildID)) return this.play(search, inter.message, guildID, inter)
+
+        let embed = new this.Embed()
+        .setDescription(`[${search.info.title}](${search.info.uri}) has been added to the queue`)
+        .setFooter("Song Search by soundcloud")
+        this.client.globalEmbedData(embed)
+
+        inter.createMessage(embed.build())
     }
 
 }

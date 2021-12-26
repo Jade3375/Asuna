@@ -21,5 +21,17 @@ class Nya extends Command {
           .setImage(json.url)
         message.channel.createMessage(embed.build());
     }
+
+    async slash(inter) {
+        let res = await fetch("https://rra.ram.moe/i/r?type=nyan")
+        let json = await res.json()
+        let data = json.path;
+
+        let embed = new this.Embed()
+            .setDescription(`Nya?`)
+          .setImage("https://rra.ram.moe" + data)
+          .setTimestamp()
+        inter.createMessage(embed.build());
+    }
 }
 module.exports = Nya;

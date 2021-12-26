@@ -31,4 +31,36 @@ module.exports = class extends Command {
         })
     }
 
+    async slash(inter) {
+        let perm = "kickMembers"
+        let usr = inter.data.options[0].value
+        let reason = "No reason provided." //Default value because discord doesn't return the 2nd optional option for interactions if left blank.
+        let gObj = inter.channel.guild
+        let userID = inter.member.id
+        let targetName = gObj.members.get(userID).username
+
+        if(inter.data.options[1] != undefined) reason = inter.data.options[1].value
+        
+
+        if(!this.checkPermInter(userID, gObj, perm)) return inter.createMessage(`You do not have the *${perm}* permission.`)
+        
+        if(!this.checkPermInter(this.client.user.id,gObj, perm)) return inter.createMessage(`I do not have the *${perm}* permission.`) //Bot perm check
+
+        if(this.checkPermInter(usr, gObj,perm)) return inter.createMessage(`This user is too high a level for me to ban!`) //Target perm check
+        
+        
+        this.client.kickGuildMember(inter.guildID, usr, reason).catch(err => {
+            inter.createMessage("I cannot kick this member! Is my role high enough?")
+        })
+
+        let embed = new this.Embed()
+          .setColor("#7ABB20")
+          .setTitle("User Kicked")
+          .setDescription(`User ${targetName} successfully kicked.`)
+          .addField(`Reason: `, reason)
+          .setTimestamp()
+
+        inter.createMessage(embed.build())
+    }
 }
+

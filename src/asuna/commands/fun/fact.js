@@ -23,16 +23,13 @@ class Fact extends Command {
     }
 
     async slash(inter) {
+        
         let res = await fetch("https://nekos.life/api/v2/fact")
-        console.log(res)
-        //let json = res.json()
-        zLib.unzip(res.body._outBuffer, (err, buf) => {
-            console.log(buf)
-          })
-        //let fact = json.fact
-
+        let json = await res.json()
+        let fact = json.fact;
         let embed = new this.Embed()
-          .setDescription(`Your random fact is **${JSON.stringify(res.json())}**!`)
+          .setDescription(`Your random fact is **${fact}**!`)
+          .setTimestamp()
         inter.createMessage(embed.build())
     }
 }

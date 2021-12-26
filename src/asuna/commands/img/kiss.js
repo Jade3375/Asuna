@@ -29,6 +29,22 @@ class Kiss extends Command {
         this.client.globalEmbedData(embed)
         message.channel.createMessage(embed.build());
     }
+
+    async slash(inter) {
+        if(inter.data.options[0].value == this.client.user.id) return inter.createMessage("H-Hey >~< That's pretty lewd :flushed:")
+        if(inter.data.options[0].value == inter.member.id) return inter.createMessage("Awe you seem pretty lonely, How sad.")
+
+        let mentioned = inter.data.options[0].value
+        let img = await this.client.weeb.sfw("kiss")
+        let responses = ['How lewd!', 'EW...', 'Awwww cuteeeeeeeee.', 'Get a room.', 'Hawt!', 'Why?', 'C-Can I have one?']
+
+        let embed = new this.Embed()
+          .setColor("#FF69B4")
+          .setDescription(`<@${inter.member.id}> has kissed <@${mentioned}>! ${responses[Math.floor(Math.random() * responses.length)]}`)
+          .setImage(img)
+          .setTimestamp()
+        inter.createMessage(embed.build());
+    }
 }
 
 module.exports = Kiss;

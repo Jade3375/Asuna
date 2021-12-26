@@ -31,4 +31,28 @@ module.exports = class extends Command {
         
         message.channel.createMessage(`${usr} has been unbanned.`)
     }
+
+    async slash(inter) {
+        let perm = "banMembers"
+        let usr = inter.data.options[0].value
+        let gObj = inter.channel.guild
+        let userID = inter.member.id
+        let targetName = gObj.members.get(userID).username
+        
+
+        if(!this.checkPermInter(userID, gObj, perm)) return inter.createMessage(`You do not have the *${perm}* permission.`)
+        if(!this.checkPermInter(this.client.user.id,gObj, perm)) return inter.createMessage(`I do not have the *${perm}* permission.`) //Bot perm check
+
+        this.client.unbanGuildMember(inter.guildID, usr).catch(err => {
+            inter.createMessage("I cannot unban this member!")
+        })
+
+        let embed = new this.Embed()
+          .setColor("#20FF20")
+          .setTitle("User Unbanned")
+          .setDescription(`User ${targetName} successfully unbanned.`)
+          .setTimestamp()
+
+        inter.createMessage(embed.build())
+    }
 }

@@ -21,4 +21,13 @@ module.exports = class extends Command {
         message.channel.createMessage(embed.build())
     }
 
+    async slash(inter){
+        let embed = new this.Embed()
+        .setTitle("Bot Stats")
+        .setDescription(`Invite me to your server using [this invite](https://discord.com/oauth2/authorize?client_id=420907324945989632&permissions=2146824183&scope=bot%20applications.commands) \nIf you need help with the bot join [here](https://discord.gg/uyEQkTT )`)
+        .setTimestamp()
+        
+        inter.createMessage(embed.build())
+    }
+
 }

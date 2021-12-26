@@ -22,6 +22,18 @@ class Doggo extends Command {
           .setImage(json.url)
         message.channel.createMessage(embed.build());
     }
+
+    async slash(inter){
+        let user = inter.member.username
+        let res = await fetch(`https://random.dog/woof.json`)
+        let json = await res.json()
+
+        let embed = new this.Embed()
+          .setDescription(`Have a cute doggo, ${user}!`)
+          .setImage(json.url)
+          .setTimestamp()
+        inter.createMessage(embed.build());
+    }
     
 }
 module.exports = Doggo;

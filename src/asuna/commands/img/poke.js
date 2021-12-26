@@ -30,5 +30,23 @@ class Poke extends Command {
         this.client.globalEmbedData(embed)
         message.channel.createMessage(embed.build());
     }
+
+    async slash(inter) {
+
+        if(inter.data.options[0].value == this.client.user.id) return inter.createMessage("DON'T POKE MEEEEEEEEE!")
+        if(inter.data.options[0].value == inter.member.id) return inter.createMessage(`You feeling okay?`)
+
+        let res = await fetch("https://nekos.life/api/v2/img/poke");
+        let json = await res.json();
+        let responses = ['How lewd!', 'EW...', 'Awwww cuteeeeeeeee.', 'Get a room.', 'Hawt!', 'Why?', 'C-Can I have one?']
+
+        let embed = new this.Embed()
+          .setColor("#FF69B4")
+          .setDescription(`<@${inter.member.id}> has poked <@${inter.data.options[0].value}>! ${responses[Math.floor(Math.random() * responses.length)]}`)
+          .setImage(`${json.url}`)
+          .setTimestamp()
+        inter.createMessage(embed.build());
+
+    }
 }
 module.exports = Poke;

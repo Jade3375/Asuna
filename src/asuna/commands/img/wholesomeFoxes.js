@@ -21,5 +21,18 @@ class WholesomeFox extends Command {
         this.client.globalEmbedData(embed)
         message.channel.createMessage(embed.build());
     }
+
+    async slash(inter) {
+
+        let img = await this.client.weeb.sfw("wholesome_foxes");
+
+        let embed = new this.Embed()
+          .setColor("#FF69B4")
+          .setDescription(`Here\'s a wholesome fox comic!`)
+          .setImage(img)
+          .setTimestamp()
+        inter.createMessage(embed.build());
+
+    }
 }
 module.exports = WholesomeFox;

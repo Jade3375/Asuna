@@ -30,5 +30,24 @@ class Tickle extends Command {
         this.client.globalEmbedData(embed)
         message.channel.createMessage(embed.build());
     }
+
+    async slash(inter){
+
+        if(inter.data.options[0].value == this.client.user.id) return inter.createMessage("N-nuh my only weakness!");
+        if(inter.data.options[0].value == inter.member.id) return inter.createMessage('Why are you even trying?')
+
+        let res = await fetch("https://rra.ram.moe/i/r?type=tickle");
+        let json = await res.json();
+        let responses = ['How lewd!', 'EW...', 'Awwww cuteeeeeeeee.', 'Get a room you two.', 'Hawt!', 'Why?', 'C-Can I have some?']
+
+        let embed = new this.Embed()
+          .setColor("#FF69B4")
+          .setDescription(`<@${inter.member.id}> has slapped <@${inter.data.options[0].value}>! ${responses[Math.floor(Math.random() * responses.length)]}`)
+          .setImage(`https://rra.ram.moe${json.path}`)
+          .setTimestamp()
+        inter.createMessage(embed.build());
+
+
+    }
 }
 module.exports = Tickle;

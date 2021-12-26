@@ -17,7 +17,7 @@ module.exports = class extends Command {
         if(!this.checkPerm(message.author.id, message, perm)) return message.channel.createMessage(`You do not have the *${perm}* permission`)
 
         let row = await this.client.db.getRow("server", message.guildID);
-        if (row.data == null) this.client.db.addRow("server", guild, {prefix: '%'})
+        if (row.data == null) this.client.db.addRow("server", message.guild, {prefix: '%'})
         if(row.data.welcome == null) row.data.welcome = {}
         
         let embed = new this.Embed();
@@ -34,5 +34,33 @@ module.exports = class extends Command {
             console.error(`DB error: ${e}`)
         })
         message.channel.createMessage(embed.build())
+    }
+
+    async slash(inter){
+        let perm = "manageGuild"
+        let gObj = inter.channel.guild
+        let userID = inter.member.id
+        let welcomeChannel = inter.data.options[0].value
+
+        if(!this.checkPermInter(userID, gObj, perm)) return inter.createMessage(`You do not have the *${perm}* permission.`)
+        
+        //if(!this.checkPermInter(this.client.user.id, gObj, perm)) return inter.createMessage(`I do not have the *${perm}* permission.`) //Bot perm check
+
+        let row = await this.client.db.getRow("server", inter.guildID);
+        if (row.data == null) this.client.db.addRow("server", inter.guildID, {prefix: '%'})
+        if(row.data.welcome == null) row.data.welcome = {}
+        
+        let embed = new this.Embed();
+
+        embed.setTitle("set channel")
+        embed.setDescription(`welcome channel set to <#${welcomeChannel}>`)
+        row.data.welcome.channel = welcomeChannel
+        this.client.globalEmbedData(embed)
+        this.client.db.editRow("server", inter.guildID, row.data).catch(e => {
+            inter.createMessage("oops looks like an error occured if this continues let the developers know")
+            console.error(`DB error: ${e}`)
+        })
+        inter.createMessage(embed.build())
+
     }
 }

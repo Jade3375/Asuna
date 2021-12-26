@@ -29,5 +29,21 @@ class Hug extends Command {
         this.client.globalEmbedData(embed)
         message.channel.createMessage(embed.build());
     }
+
+    async slash(inter) {
+        if(inter.data.options[0].value == this.client.user.id) return inter.createMessage("👉👈  W-Why")
+        if(inter.data.options[0].value == inter.member.id) return inter.createMessage(`<@!${inter.member.id}> *tried to hug themselves*. Pathetic`)
+
+        let mentioned = inter.data.options[0].value
+        let img = await this.client.weeb.sfw("hug")
+        let responses = ['How cute.', 'YAY! Hugs for all.', 'You better not hold hands next. 👉👈', 'Get a room you two.', 'Hawt!']
+
+        let embed = new this.Embed()
+          .setColor("#FF69B4")
+          .setDescription(`<@${inter.member.id}> has hugged <@${mentioned}>! ${responses[Math.floor(Math.random() * responses.length)]}`)
+          .setImage(img)
+          .setTimestamp()
+        inter.createMessage(embed.build());
+    }
 }
 module.exports = Hug;

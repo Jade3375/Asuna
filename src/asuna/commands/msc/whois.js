@@ -37,4 +37,29 @@ module.exports = class extends Command {
         message.channel.createMessage(embed.build())
     }
 
+    async slash(inter) {
+        let user = inter.member
+        console.log(inter)
+        if(inter.data.options != undefined) user = inter.member.guild.members.get(inter.data.options[0].value)
+
+        if(!user) return inter.createMessage("Could not find user")
+
+        let joinedAt = new Date(user.joinedAt).getTime() / 1000
+        let Registered = new Date((user.id / 4194304) + 1420070400000).getTime() / 1000
+        let roles = [] 
+        inter.member.roles.forEach(role => { roles.push(`<@&${role.toString()}>`) })
+
+        let embed = new this.Embed()
+        .setAuthor(user.user.username, user.avatarURL)
+        .setThumbnail(user.avatarURL)
+        .addField("Registered", `<t:${Math.floor(Registered)}:R>`, true)
+        .addField("Joined At", `<t:${Math.floor(joinedAt)}:R>`, true)
+        .addField("Roles", roles.toString().split(",").join(", "))
+        //.addField("Permissions", Object.keys(user.permission.json).toString().split(",").join(", "))
+
+        this.client.globalEmbedData(embed)
+
+        inter.createMessage(embed.build())
+    }
+
 }

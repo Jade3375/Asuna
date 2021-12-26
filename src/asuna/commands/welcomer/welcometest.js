@@ -25,4 +25,23 @@ module.exports = class extends Command {
                 this.client.emit("guildMemberAdd", message.member.guild, message.member, {run: true})
                 message.channel.createMessage("sending test welcome to set channel")
     }
+
+    async slash(inter) {
+        let perm = "manageGuild"
+        let gObj = inter.channel.guild
+        let userID = inter.member.id
+
+        if(!this.checkPermInter(userID, gObj, perm)) return inter.createMessage(`You do not have the *${perm}* permission.`)
+        
+        let row = await this.client.db.getRow("server", inter.guildID);
+        if (row.data == null) 
+            return;
+
+        let guild = row.data
+        if(guild.welcome == undefined || guild.welcome.channel == "" || !guild.welcome.channel) return inter.createMessage("No Welcome Channel Set!")
+        this.client.emit("guildMemberAdd", inter.member.guild, inter.member, {run: true})
+        inter.createMessage("Sending test welcome to set channel...")
+
+        
+    }
 };

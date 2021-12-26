@@ -12,11 +12,21 @@ module.exports = class extends Command {
     }
 
     async run(message, args) {
-        let owners = ["165811958828761089", "181072300815286275"];
+        let owners = ["165811958828761089", "181072300815286275", "431743926974808076"];
         if (!owners.includes(message.author.id)) return;
 
         
         message.channel.createMessage("reloaded commands and events")
+        this.client.load.cmds()
+        this.client.load.events()
+    }
+
+    async slash(inter) {
+        let owners = ["165811958828761089", "181072300815286275", "431743926974808076"];
+        if (!owners.includes(inter.member.id)) return inter.createMessage("Insufficient Permissions.");
+
+        
+        inter.createMessage("Reloaded commands and events")
         this.client.load.cmds()
         this.client.load.events()
     }

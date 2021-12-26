@@ -25,4 +25,26 @@ module.exports = class extends Command {
         message.channel.purge({limit: parseInt(args[0]), reason: `${args[0]} messages purged by ${message.author.username}.`})
     }
 
+    async slash(inter) {
+        let perm = "manageMessages"
+        let msgCount = inter.data.options[0].value
+        let gObj = inter.channel.guild
+        let userID = inter.member.id
+
+        if(!this.checkPermInter(userID, gObj, perm)) return inter.createMessage(`You do not have the *${perm}* permission.`)
+        if(!this.checkPermInter(this.client.user.id,gObj, perm)) return inter.createMessage(`I do not have the *${perm}* permission.`) //Bot perm check
+        
+        
+        inter.channel.purge({limit: msgCount}).catch(err => {
+            inter.createMessage("I cannot purge messages! Unknown Error!")
+        })
+
+        let embed = new this.Embed()
+          .setColor("#7ABB20")
+          .setTitle("Messages Purged")
+          .setDescription(`${msgCount} successfully purged.`)
+          .setTimestamp()
+
+        inter.createMessage(embed.build())
+    }
 }

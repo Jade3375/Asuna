@@ -29,4 +29,20 @@ module.exports = class extends Command {
             })
         }else message.channel.createMessage(":warning: This channel is not marked as NSFW :warning:")
     }
+
+    async slash(inter) {
+        if (inter.channel.nsfw){
+            fetch(`https://nekobot.xyz/api/image?type=thigh`)
+            .then(res => res.json())
+            .then(json => {
+                let responses = ['oh my thats lewd', 'ara ara', 'don\'t get all hot and bothered now']
+                let embed = new this.Embed()
+                .setColor("#FF69B4")
+                .setDescription(`<@${inter.member.id}> enjoy. ${responses[Math.floor(Math.random() * responses.length)]}`)
+                .setImage(json.message)
+                .setTimestamp()
+                inter.createMessage(embed.build())
+            })
+        }else inter.createMessage(":warning: This channel is not marked as NSFW :warning:")
+    }
 }

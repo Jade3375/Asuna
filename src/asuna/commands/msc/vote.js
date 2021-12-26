@@ -22,4 +22,13 @@ module.exports = class extends Command {
 
     }
 
+    async slash(inter) {
+        let embed = new this.Embed()
+        .setTitle("Bot Voting")
+        .setDescription(`Feel free to vote for asuna on [top.gg](https://top.gg/bot/420907324945989632) and gain voting benefits `)
+        this.client.globalEmbedData(embed)
+        
+        inter.createMessage(embed.build())
+    }
+
 }

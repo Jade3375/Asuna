@@ -33,7 +33,9 @@ class Cookie extends Command {
         let embed = new this.Embed()
           .setImage("https://pa1.narvii.com/5664/0245ad6afd1b0eedc80ad359020c5bcb62216fa8_hq.gif") //https://pa1.narvii.com/5664/0245ad6afd1b0eedc80ad359020c5bcb62216fa8_hq.gif
           .setDescription(`<@${mentioned}> have a cookie. ^~^`)
-
+          .setTimestamp()
+        
+        if(inter.member.user = mentioned) return inter.createMessage(`<@!${mentioned}>, why even give yourself a cookie.`)
           inter.createMessage(embed.build())
     }
 }
