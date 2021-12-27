@@ -34,7 +34,7 @@ class BallOf8 extends Command {
         else message.channel.createMessage("What is your question? {usage %8ball question}") // If no question send this message to chat
     }
 
-    async slash(inter, options){ 
+    async slash(inter, data){ 
         let eightball = [ 
             "Yes!",
             "No...",
@@ -48,7 +48,7 @@ class BallOf8 extends Command {
         ]
             let embed = new this.Embed()
               .setTitle("8-ball knows all")
-              .addField("Question", options[0].value)
+              .addField("Question", data.options[0].value)
               .addField("The answer is...", eightball[Math.floor(Math.random() * eightball.length).toString(16)] )
               .setTimestamp()
               inter.createMessage(embed.build())
