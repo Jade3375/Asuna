@@ -1,4 +1,3 @@
-const { CommandInteraction } = require('eris');
 let Command = require('../../structures/command');
 
 class BallOf8 extends Command {

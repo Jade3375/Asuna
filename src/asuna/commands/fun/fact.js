@@ -1,5 +1,4 @@
 let Command = require('../../structures/command');
-let zLib = require('zlib');
 
 class Fact extends Command {
     constructor (client) {
