@@ -32,9 +32,9 @@ module.exports = class extends Command {
         message.channel.createMessage(`${usr} has been unbanned.`)
     }
 
-    async slash(inter) {
+    async slash(inter, data) {
         let perm = "banMembers"
-        let usr = inter.data.options[0].value
+        let usr = data.options[0].value
         let gObj = inter.channel.guild
         let userID = inter.member.id
         let targetName = gObj.members.get(userID).username

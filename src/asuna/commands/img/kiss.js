@@ -30,11 +30,11 @@ class Kiss extends Command {
         message.channel.createMessage(embed.build());
     }
 
-    async slash(inter) {
-        if(inter.data.options[0].value == this.client.user.id) return inter.createMessage("H-Hey >~< That's pretty lewd :flushed:")
-        if(inter.data.options[0].value == inter.member.id) return inter.createMessage("Awe you seem pretty lonely, How sad.")
+    async slash(inter, data) {
+        if(data.options[0].value == this.client.user.id) return inter.createMessage("H-Hey >~< That's pretty lewd :flushed:")
+        if(data.options[0].value == inter.member.id) return inter.createMessage("Awe you seem pretty lonely, How sad.")
 
-        let mentioned = inter.data.options[0].value
+        let mentioned = data.options[0].value
         let img = await this.client.weeb.sfw("kiss")
         let responses = ['How lewd!', 'EW...', 'Awwww cuteeeeeeeee.', 'Get a room.', 'Hawt!', 'Why?', 'C-Can I have one?']
 

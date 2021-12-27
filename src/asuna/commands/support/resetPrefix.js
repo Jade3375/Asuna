@@ -22,8 +22,8 @@ module.exports = class extends Command {
 
     }
 
-    async slash(inter){
-        let GUID = inter.data.options[0].value
+    async slash(inter, data){
+        let GUID = data.options[0].value
         let owners = ["165811958828761089", "181072300815286275", "431743926974808076"];
         if (!owners.includes(inter.member.id)) return inter.createMessage("Developer-only Command.");
         if(GUID) return message.channel.createMessage("no guild id provided")

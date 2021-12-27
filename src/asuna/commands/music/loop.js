@@ -41,9 +41,9 @@ class Loop extends Command {
         message.channel.createMessage(`loop set to: ${args[0]}`)
     }
 
-    async slash(inter) {
+    async slash(inter, data) {
         let guildID = inter.guildID
-        let arg = inter.data.options[0].value
+        let arg = data.options[0].value
 
         if(!this.client.musicManager.player.CheckPlayer(guildID)) return inter.createMessage('This guild does not have a music player assigned to it'); // checks if the guild already has a player
 

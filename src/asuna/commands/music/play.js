@@ -80,14 +80,14 @@ class Play extends Command {
         }
     }
 
-    async slash(inter) {
+    async slash(inter, data) {
         let guildID = inter.guildID
         let channel = inter.member.voiceState.channelID // check if user is in a vc
         if(!channel) return inter.createMessage('You might want to join a voice channel first')
 
         let guildData = await this.client.db.getRow("server", guildID)
 
-        let searchString = inter.data.options[0].value
+        let searchString = data.options[0].value
         
         if(!this.client.musicManager.player.CheckPlayer(guildID)) this.client.musicManager.player.CreatePlayer(guildID) // checks if the guild already has a player, makes one if false
 

@@ -30,11 +30,11 @@ class Hug extends Command {
         message.channel.createMessage(embed.build());
     }
 
-    async slash(inter) {
-        if(inter.data.options[0].value == this.client.user.id) return inter.createMessage("👉👈  W-Why")
-        if(inter.data.options[0].value == inter.member.id) return inter.createMessage(`<@!${inter.member.id}> *tried to hug themselves*. Pathetic`)
+    async slash(inter, data) {
+        if(data.options[0].value == this.client.user.id) return inter.createMessage("👉👈  W-Why")
+        if(data.options[0].value == inter.member.id) return inter.createMessage(`<@!${inter.member.id}> *tried to hug themselves*. Pathetic`)
 
-        let mentioned = inter.data.options[0].value
+        let mentioned = data.options[0].value
         let img = await this.client.weeb.sfw("hug")
         let responses = ['How cute.', 'YAY! Hugs for all.', 'You better not hold hands next. 👉👈', 'Get a room you two.', 'Hawt!']
 

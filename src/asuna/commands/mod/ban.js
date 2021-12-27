@@ -31,15 +31,15 @@ module.exports = class extends Command {
         })
     }
 
-    async slash(inter) {
+    async slash(inter, data) {
         let perm = "banMembers"
-        let usr = inter.data.options[0].value
+        let usr = data.options[0].value
         let reason = "No reason provided." //Default value because discord doesn't return the 2nd optional option for interactions if left blank.
         let gObj = inter.channel.guild
         let userID = inter.member.id
         let targetName = gObj.members.get(userID).username
 
-        if(inter.data.options[1] != undefined) reason = inter.data.options[1].value
+        if(data.options[1] != undefined) reason = data.options[1].value
         
 
         if(!this.checkPermInter(userID, gObj, perm)) return inter.createMessage(`You do not have the *${perm}* permission.`)

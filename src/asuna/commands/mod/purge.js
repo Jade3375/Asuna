@@ -25,9 +25,9 @@ module.exports = class extends Command {
         message.channel.purge({limit: parseInt(args[0]), reason: `${args[0]} messages purged by ${message.author.username}.`})
     }
 
-    async slash(inter) {
+    async slash(inter, data) {
         let perm = "manageMessages"
-        let msgCount = inter.data.options[0].value
+        let msgCount = data.options[0].value
         let gObj = inter.channel.guild
         let userID = inter.member.id
 

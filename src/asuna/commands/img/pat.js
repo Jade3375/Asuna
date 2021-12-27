@@ -31,10 +31,10 @@ class Pat extends Command {
         message.channel.createMessage(embed.build());
     }
 
-    async slash(inter) {
+    async slash(inter, data) {
 
-        if(inter.data.options[0].value == this.client.user.id) return inter.createMessage("Yay thank you for the pats!")
-        if(inter.data.options[0].value == inter.member.id) return inter.createMessage(`Giving yourself a pat on the back ay?`)
+        if(data.options[0].value == this.client.user.id) return inter.createMessage("Yay thank you for the pats!")
+        if(data.options[0].value == inter.member.id) return inter.createMessage(`Giving yourself a pat on the back ay?`)
 
         let res = await fetch("https://rra.ram.moe/i/r?type=pat");
         let json = await res.json();
@@ -42,7 +42,7 @@ class Pat extends Command {
 
         let embed = new this.Embed()
           .setColor("#FF69B4")
-          .setDescription(`<@${inter.member.id}> has pet <@${inter.data.options[0].value}>! ${responses[Math.floor(Math.random() * responses.length)]}`)
+          .setDescription(`<@${inter.member.id}> has pet <@${data.options[0].value}>! ${responses[Math.floor(Math.random() * responses.length)]}`)
           .setImage(`https://rra.ram.moe${json.path}`)
           .setTimestamp()
         inter.createMessage(embed.build());

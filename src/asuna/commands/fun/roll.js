@@ -17,11 +17,11 @@ class Roll extends Command {
         message.channel.createMessage(`You rolled a ${roll}!`)
     }
 
-    async slash(inter) {
+    async slash(inter, data) {
 
         let max = 100
-        if (inter.data.hasOwnProperty('options'))
-            max = inter.data.options[0].value;
+        if (data.hasOwnProperty('options'))
+            max = data.options[0].value;
         let roll = Math.floor(Math.random() * max) + 1
         
 

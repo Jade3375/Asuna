@@ -18,8 +18,8 @@ class Rate extends Command {
         message.channel.createMessage( message.author.username + " **I give " + object + " a " + rating + "/10**!")
     }
 
-    async slash(inter){
-        let object = inter.data.options[0].value;
+    async slash(inter, data){
+        let object = data.options[0].value;
         let rating = Math.floor(Math.random() * 10) + 1;
         inter.createMessage("**I give " + object + " a " + rating + "/10**!");
     }

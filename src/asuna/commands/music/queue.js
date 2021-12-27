@@ -62,7 +62,7 @@ module.exports = class extends Command {
         message.channel.createMessage(embed.build())
     }
 
-    async slash(inter) {
+    async slash(inter, data) {
 
         let guildID = inter.guildID
 
@@ -76,10 +76,10 @@ module.exports = class extends Command {
         let page
         let total_pages = Math.ceil(player.queueManager.queue.length / pageSize);
 
-        if (inter.data.options == undefined) {
+        if (data.options == undefined) {
             page = 1;
         } else {
-            page = inter.data.options[0].value
+            page = data.options[0].value
             if (page <= 0 || page > total_pages) {
                 inter.createMessage(`There is nothing here! Total Number of Pages is ${total_pages}`);
                 return;

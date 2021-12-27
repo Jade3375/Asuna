@@ -37,7 +37,7 @@ module.exports = class extends Command {
         message.channel.createMessage(`set player volume to ${args[0]}`)
     }
 
-    async slash(inter){
+    async slash(inter, data){
 
         let player = this.client.musicManager.player.getPlayer(inter.guildID)
         if(!player) return message.channel.createMessage("No player to change the volume of!")
@@ -47,17 +47,17 @@ module.exports = class extends Command {
 
         if(channel != player.channel) return message.channel.createMessage('I cannot allow you to change volume if you are not in my VC!');
 
-        if(inter.data.options[1] != undefined) {
-            if(inter.data.options[0].value > 1000) return inter.createMessage("Override limit is 1000")
-            player.setVolume(inter.data.options[0].value)
-            inter.createMessage(`overriding player volume to ${inter.data.options[0].value}`)
+        if(data.options[1] != undefined) {
+            if(data.options[0].value > 1000) return inter.createMessage("Override limit is 1000")
+            player.setVolume(data.options[0].value)
+            inter.createMessage(`overriding player volume to ${data.options[0].value}`)
         }
-        if(inter.data.options[1]) return
+        if(data.options[1]) return
 
-        if(inter.data.options[0].value > 200) return inter.createMessage("Please enter a number Between 1 and 200")
+        if(data.options[0].value > 200) return inter.createMessage("Please enter a number Between 1 and 200")
 
-        player.setVolume(inter.data.options[0].value)
-        inter.createMessage(`set player volume to ${inter.data.options[0].value}`)
+        player.setVolume(data.options[0].value)
+        inter.createMessage(`set player volume to ${data.options[0].value}`)
 
     }
 }

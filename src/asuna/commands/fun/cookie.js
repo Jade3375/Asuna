@@ -27,9 +27,9 @@ class Cookie extends Command {
 
     }
 
-    async slash(inter) {
+    async slash(inter, data) {
 
-        let mentioned = inter.data.options[0].value
+        let mentioned = data.options[0].value
         let embed = new this.Embed()
           .setImage("https://pa1.narvii.com/5664/0245ad6afd1b0eedc80ad359020c5bcb62216fa8_hq.gif") //https://pa1.narvii.com/5664/0245ad6afd1b0eedc80ad359020c5bcb62216fa8_hq.gif
           .setDescription(`<@${mentioned}> have a cookie. ^~^`)

@@ -25,10 +25,10 @@ module.exports = class extends Command {
 
     }
 
-    async slash(inter){
+    async slash(inter, data){
 
         let GUID = inter.guildID
-        if (inter.data.options != undefined) GUID = inter.data.options[0].value
+        if (data.options != undefined) GUID = data.options[0].value
 
         let row = await this.client.db.getRow("staff", inter.member.id)
         if(row.data == null) return inter.createMessage("You are not a staff member.")

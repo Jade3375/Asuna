@@ -26,11 +26,11 @@ module.exports = class extends Command {
         message.channel.createMessage(`Prefix has been set to "${newPrefix}".`)
     }
 
-    async slash(inter) {
+    async slash(inter, data) {
         let perm = "manageGuild"
         let gObj = inter.channel.guild
         let userID = inter.member.id
-        let arg = inter.data.options[0].value
+        let arg = data.options[0].value
 
         if(!this.checkPermInter(userID, gObj, perm)) return inter.createMessage(`You do not have the *${perm}* permission.`)
         
