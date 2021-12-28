@@ -22,6 +22,18 @@ class Waifu extends Command {
           .setImage(json.url)
         message.channel.createMessage(embed.build());
     }
+
+    async slash(inter){
+        let res = await fetch(`https://nekos.life/api/v2/img/waifu`)
+        let json = await res.json()
+
+        let embed = new this.Embed()
+          .setDescription(`Here is your new waifu, <@${inter.member.id}>!`)
+          .setImage(json.url)
+          .setTimestamp()
+        inter.createMessage(embed.build());
+
+    }
     
 }
 module.exports = Waifu;

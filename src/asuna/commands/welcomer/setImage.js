@@ -34,4 +34,30 @@ module.exports = class extends Command {
         })
         message.channel.createMessage(embed.build())
     }
+
+    async slash(inter, data) {
+        let perm = "manageGuild"
+        let gObj = inter.channel.guild
+        let userID = inter.member.id
+        let arg = data.options[0].value
+
+        if(!this.checkPermInter(userID, gObj, perm)) return inter.createMessage(`You do not have the *${perm}* permission.`)
+        
+        let row = await this.client.db.getRow("server", inter.guildID);
+        if (row.data == null) this.client.db.addRow("server", inter.guildID, {prefix: '%'})
+        if(row.data.welcome == null) row.data.welcome = {}
+
+        let embed = new this.Embed();
+
+        embed.setTitle("setImage")
+        embed.setDescription("Image has been updated")
+        embed.setImage(arg)
+        this.client.globalEmbedData(embed)
+        row.data.welcome.BGImage = {src :arg, location:[0,0]}
+        this.client.db.editRow("server", inter.guildID, row.data).catch(e => {
+            inter.createMessage("Oops! Looks like an error occured. If this continues let the developers know!")
+            console.error(`DB error: ${e}`)
+        })
+        inter.createMessage(embed.build())
+    }
 }

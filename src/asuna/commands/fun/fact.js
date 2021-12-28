@@ -20,5 +20,16 @@ class Fact extends Command {
           .setDescription(`Your random fact is **${fact}**!`)
         message.channel.createMessage(embed.build())
     }
+
+    async slash(inter) {
+        
+        let res = await fetch("https://nekos.life/api/v2/fact")
+        let json = await res.json()
+        let fact = json.fact;
+        let embed = new this.Embed()
+          .setDescription(`Your random fact is **${fact}**!`)
+          .setTimestamp()
+        inter.createMessage(embed.build())
+    }
 }
 module.exports = Fact;

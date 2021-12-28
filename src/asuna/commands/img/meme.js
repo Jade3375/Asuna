@@ -38,5 +38,34 @@ class Meme extends Command {
           .setImage(url)
         message.channel.createMessage(embed.build());
     }
+
+    async slash(inter){
+        let reddit = [
+            "meme",
+            "animemes",
+            "MemesOfAnime",
+            "animememes",
+            "AnimeFunny",
+            "dankmemes",
+            "dankmeme",
+            "wholesomememes",
+            "MemeEconomy",
+            "techsupportanimals",
+            "meirl",
+            "me_irl",
+            "2meirl4meirl",
+            "AdviceAnimals"
+        ]
+
+        let subreddit = reddit[Math.floor(Math.random() * reddit.length)];
+        let url = await randomPuppy(subreddit);
+        
+        let embed = new this.Embed()
+          .setDescription(`Here is a meme from ${subreddit}!\n[[Meme]](${url})`)
+          .setImage(url)
+          .setTimestamp()
+        inter.createMessage(embed.build());
+
+    }
 }
 module.exports = Meme;

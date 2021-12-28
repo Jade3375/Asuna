@@ -34,11 +34,26 @@ class Command {
      * @param {Message} message Message Object
      * @param {String} permission String of the permission being checked
      * @returns {Boolean} true if permission is present
-     */
+     */ 
     checkPerm(UID, message, permission) {
         if (message.channel.guild.members.get(UID).permissions.json.administrator == true) return true
         return message.member.guild.members.get(UID).permissions.json[permission]
     }
+
+    /**
+     * Permission checker for a User in a Guild FOR INTERACTIONS
+     * @param {String} UID User ID of the member whose permission levels are being checked.
+     * @param {String} GObj Guild Object (Interaction.message.guild)
+     * @param {String} permission Permission being checked 
+     * @returns {Boolean}
+     */
+    checkPermInter(UID, GObj, permission){
+         
+            if (GObj.members.get(UID).permissions.json.administrator == true) return true
+            return GObj.members.get(UID).permissions.json[permission]
+        }
+
+    
     /**
      * 
      * @param {String} mention String of the user mention

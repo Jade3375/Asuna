@@ -60,7 +60,55 @@ module.exports = class extends Command {
         this.client.globalEmbedData(embed)
 
         message.channel.createMessage(embed.build())
-        
+    }
+
+    async slash(inter, data) {
+
+        let guildID = inter.guildID
+
+        if(!this.client.musicManager.player.CheckPlayer(guildID)) return inter.createMessage('This guild does not have a music player assigned to it'); // checks if the guild already has a player
+
+        let player = this.client.musicManager.player.getPlayer(guildID)
+
+        if(!this.client.musicManager.player.IsConnected(guildID)) return inter.createMessage('I am not connected to any voice channel') // check if player is connected
+
+        let pageSize = 10
+        let page
+        let total_pages = Math.ceil(player.queueManager.queue.length / pageSize);
+
+        if (data.options == undefined) {
+            page = 1;
+        } else {
+            page = data.options[0].value
+            if (page <= 0 || page > total_pages) {
+                inter.createMessage(`There is nothing here! Total Number of Pages is ${total_pages}`);
+                return;
+            }
+            
+        }
+
+        let songs = []
+        let time = 0
+        let counter = 0;
+        let counter_offset = (page - 1) * pageSize;
+
+        player.queueManager.queue.forEach(function (s = JSON) {
+            time += parseInt(s.info.length)
+        })
+
+        player.queueManager.queue.forEach(function (s = JSON) {
+            counter++;
+            if (counter < counter_offset || counter > page * pageSize) {
+                return;
+            }
+            songs.push(`#${counter}: ${s.info.title}`);
+        })
+        let embed = new this.Embed()
+        .addField(`Queue`, songs.join('\n'))
+        .setFooter(`Page ${page} / ${total_pages}    queue estemate: ${Math.round((time / 1000) / 60)} minutes`)
+        this.client.globalEmbedData(embed)
+
+        inter.createMessage(embed.build())
 
     }
 }

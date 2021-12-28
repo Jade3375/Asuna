@@ -29,5 +29,24 @@ class Leave extends Command {
 
         message.channel.createMessage('Left the channel, Bye!! Bye!!')
     }
+
+    async slash(inter){
+        let guildID = inter.guildID
+
+        if(!this.client.musicManager.player.CheckPlayer(guildID)) return inter.createMessage('This guild does not have a music player assigned to it, please use \`/join\` to assign one to your VC.'); // checks if the guild already has a player
+
+        let player = this.client.musicManager.player.getPlayer(guildID)
+
+        if(!this.client.musicManager.player.IsConnected(guildID)) return inter.createMessage('I am not connected to any voice channel') // check if player is connected
+
+        let channel = inter.member.voiceState.channelID // check if user is in a vc
+        if(!channel) return inter.createMessage('You might want to join the voice channel first!')
+
+        if(channel != player.channel) return inter.createMessage('I cannot leave a channel you are not in');
+
+        this.client.musicManager.player.DisconnectPlayer(guildID); //disconnects player ending playback and clearing queue
+
+        inter.createMessage('Left the channel, Bye!! Bye!!')
+    }
 }
 module.exports = Leave; 

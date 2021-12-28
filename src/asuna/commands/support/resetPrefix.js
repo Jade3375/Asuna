@@ -21,4 +21,19 @@ module.exports = class extends Command {
         message.channel.createMessage(`the guilds prefix has been reset`)
 
     }
+
+    async slash(inter, data){
+        let GUID = data.options[0].value
+        let owners = ["165811958828761089", "181072300815286275", "431743926974808076"];
+        if (!owners.includes(inter.member.id)) return inter.createMessage("Developer-only Command.");
+        if(GUID) return message.channel.createMessage("no guild id provided")
+
+        let row = await this.client.db.getRow("server", GUID)
+        if(row.data == null) return inter.createMessage("No guild found")
+
+        this.client.db.editRow("server", GUID, {prefix: "%"})
+        this.client.pf.prefixes.delete(GUID)
+
+        inter.createMessage(`The guilds prefix has been reset`)
+    }
 }

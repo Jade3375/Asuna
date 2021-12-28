@@ -24,4 +24,21 @@ module.exports = class extends Command {
         message.channel.createMessage(`the guilds prefix is ${row.data.prefix}`)
 
     }
+
+    async slash(inter, data){
+
+        let GUID = inter.guildID
+        if (data.options != undefined) GUID = data.options[0].value
+
+        let row = await this.client.db.getRow("staff", inter.member.id)
+        if(row.data == null) return inter.createMessage("You are not a staff member.")
+
+        row = await this.client.db.getRow("server", GUID)
+
+        if(row.data == null) return inter.createMessage("No guild found")
+
+        inter.createMessage(`The Guilds prefix is ${row.data.prefix}`)
+
+
+    }
 }

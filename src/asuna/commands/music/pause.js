@@ -30,5 +30,25 @@ class Pause extends Command {
         player.pause()
         message.channel.createMessage('paused the player')
     }
+
+    async slash(inter) {
+        let guildID = inter.guildID
+
+        if(!this.client.musicManager.player.CheckPlayer(guildID)) return inter.createMessage('This guild does not have a music player assigned to it!'); // checks if the guild already has a player
+
+        let player = this.client.musicManager.player.getPlayer(guildID)
+
+        if(!this.client.musicManager.player.IsConnected(guildID)) return inter.createMessage('I am not connected to any voice channel') // check if player is connected
+
+        let channel = inter.member.voiceState.channelID // check if user is in a vc
+        if(!channel) return inter.createMessage('You might want to join the voice channel first.')
+
+        if(channel != player.channel) return inter.createMessage('I cannot pause if you are not in the same channel as me');
+
+        if(player.paused) return inter.createMessage('Player is already paused!')
+
+        player.pause()
+        inter.createMessage('Paused the player!')
+    }
 }
 module.exports = Pause; 

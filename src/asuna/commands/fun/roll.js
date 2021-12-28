@@ -16,5 +16,16 @@ class Roll extends Command {
         
         message.channel.createMessage(`You rolled a ${roll}!`)
     }
+
+    async slash(inter, data) {
+
+        let max = 100
+        if (data.hasOwnProperty('options'))
+            max = data.options[0].value;
+        let roll = Math.floor(Math.random() * max) + 1
+        
+
+        inter.createMessage(`You rolled a ${roll}`)
+    }
 }
 module.exports = Roll;
