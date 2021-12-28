@@ -21,7 +21,6 @@ class Ping extends Command {
         let msg = await this.client.createMessage(inter.channel.id, "🏓 Pong!");
         let message = await inter.getOriginalMessage()
         let followup = await inter.createFollowup(`Roundtrip took: ${msg.timestamp - message.timestamp}ms. 💙: ${Math.round(message.channel.guild.shard.latency)}ms.`)
-        console.log(message.channel.guild.shard.latency)
 
         followup.edit(`Roundtrip took: ${msg.timestamp - message.timestamp}ms. 💙: ${Math.round(message.channel.guild.shard.latency)}ms.`)
     }
