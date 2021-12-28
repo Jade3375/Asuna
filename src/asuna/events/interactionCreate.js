@@ -26,12 +26,12 @@ module.exports = class {
     }
 
     getCmd(data) {
-        if(!data.options || data.options[0] > 2) return {name: data.name, data: data}
+        if(!data.options || data.options[0] > 2) return {name: data.name, data: data.options ? data.options[0] : data}
 
         if(data.options[0].type == 2) {
             return this.getCmd(data.options[0])
         } else if(data.options[0].type == 1) {
-            return {name: data.options[0].name, data: data}
+            return {name: data.options[0].name, data: data.options[0]}
         }
     }
     
