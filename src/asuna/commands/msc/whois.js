@@ -39,7 +39,7 @@ module.exports = class extends Command {
 
     async slash(inter, data) {
         let user = inter.member
-        console.log(inter)
+
         if(data.options != undefined) user = inter.member.guild.members.get(data.options[0].value)
 
         if(!user) return inter.createMessage("Could not find user")
