@@ -22,7 +22,7 @@ module.exports = class {
 
     runSlash(cmd, Interaction, data) {
         cmd.slash(Interaction, data.data)
-        if(this.client.cmdlogger == true) console.log(`[   Command   ] [   ${Interaction.guildID}   ]   ${cmd} has been used.`)
+        if(this.client.cmdlogger == true) console.log(`[   Command   ] [   ${Interaction.guildID}   ]   ${data.name} has been used.`)
     }
 
     getCmd(data) {
