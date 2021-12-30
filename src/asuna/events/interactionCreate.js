@@ -26,7 +26,7 @@ module.exports = class {
     }
 
     getCmd(data) {
-        if(!data.options || data.options[0] > 2) return {name: data.name, data: data.options ? data.options[0] : data}
+        if(!data.options || data.options[0].type > 2) return {name: data.name, data: data.options ? data.options[0] : data}
 
         if(data.options[0].type == 2) {
             return this.getCmd(data.options[0])

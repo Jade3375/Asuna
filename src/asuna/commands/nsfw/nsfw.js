@@ -56,8 +56,8 @@ class Nsfw extends Command {
     
 
     async slash(inter, data) {
-
-        let category = data.options[0].value
+        console.log(data)
+        let category = data.value
 
         if (inter.channel.nsfw){
             fetch(`https://nekobot.xyz/api/image?type=${category}`)
