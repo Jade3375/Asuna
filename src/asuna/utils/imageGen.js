@@ -1,7 +1,9 @@
 const { createCanvas, loadImage, registerFont } = require('canvas')
-const fs = require('fs')
-let count = 0;
 
+/**
+ * @param {Array<number>} canvasSize - int array for canvas size
+ * @param {String} colour - hex string for colour
+ */
 class imageGen {
     constructor(canvasSize, colour) {
         this.canvas = createCanvas(canvasSize[0], canvasSize[1])
@@ -13,6 +15,12 @@ class imageGen {
         registerFont(__dirname + '/../fonts/Helvetica_Medium.ttf', {family: "Helvet", weight: "medium"})
     }
 
+    /**
+     * 
+     * @param {String} img - path or url of image to be laoded and drawn
+     * @param {Array<Number>} location - location of and size of image to render on canvas | [locationX, locationY, sizeX?, sizeY?] 
+     * @returns {Object} Success and result / error 
+     */
     async imageLoad(img, location) {
         try {
             this.image = await loadImage(img)
@@ -23,6 +31,12 @@ class imageGen {
         return {success:true, res: this.image}
     }
 
+    /**
+     * 
+     * @param {Array<Number>} location - location of image to render on canvas | [locationX, locationY] 
+     * @deprecated
+     * @returns 
+     */
     drawImage(location) {
         try {
             this.ctx.drawImage(this.image, location[0], location[1])
@@ -33,6 +47,11 @@ class imageGen {
         return {success: true, res: null}
     }
 
+    /**
+     * 
+     * @param {Number} size - radius of circle
+     * @param {Array<Number>} location - location of circle
+     */
     drawCircle(size, location) {
         this.ctx.beginPath()
         this.ctx.arc(location[0], location[1], size, 0, Math.PI * 2)
@@ -40,16 +59,29 @@ class imageGen {
         this.fillR()
     }
 
+    /**
+     * 
+     * @param {String} font - font to use
+     * @param {String} txt - text to be rendered
+     * @param {Array<Number>} location - location of text to render on canvas | [locationX, locationY] 
+     */
     drawText(font, txt, location, memberCount, server, username) {
         let msg = txt.replace("{memberCount}", memberCount).replace("{server}", server).replace("{username}", username)
         this.ctx.font = font
         this.ctx.fillText(msg, location[0], location[1])
     }
 
+    /**
+     * 
+     * @returns {Buffer} buffer of image
+     */
     async getDataBuff() {
         return await this.canvas.toBuffer("image/png")
     }
 
+    /**
+     * @private
+     */
     fillR() {
         this.ctx.fillRect(0,0,this.canvasSize[0], this.canvasSize[1])
     }
