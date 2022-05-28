@@ -6,8 +6,8 @@ class Exec extends Command {
     constructor (client) {
         super(client, {
             name: "update",
-            description: "update",
-            usage: "update",
+            description: "Updates Asuna to the latest commit. [DEVS ONLY]",
+            usage: "%update",
             aliases: []
         });
         this.client = client
@@ -19,7 +19,7 @@ class Exec extends Command {
         childProcess.exec("git pull", {},
             (err, stdout, stderr) => {
             if (err) return message.channel.createMessage(`${i}${err.message}${i}`);
-            if (stdout.length > 2000) return message.channel.createMessage("Content is too big to send here try running it in the console.")
+            if (stdout.length > 2000) return message.channel.createMessage("Content is too big to send here, try running it in the console.")
             message.channel.createMessage(`${i}${stdout}${i}`);
         });
     }
@@ -31,7 +31,7 @@ class Exec extends Command {
         childProcess.exec("git pull", {},
             (err, stdout, stderr) => {
             if (err) return inter.createMessage(`${i}${err.message}${i}`);
-            if (stdout.length > 2000) return inter.createMessage("Content is too big to send here try running it in the console.")
+            if (stdout.length > 2000) return inter.createMessage("Content is too big to send here, try running it in the console.")
             inter.createMessage(`${i}${stdout}${i}`);
         });
 

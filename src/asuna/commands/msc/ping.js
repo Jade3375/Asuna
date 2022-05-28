@@ -5,7 +5,7 @@ class Ping extends Command {
         super(client, {
             name: "ping",
             description: "Latency and API response times.",
-            usage: "ping",
+            usage: "%ping",
             aliases: ["pong"]
         });
         this.client = client

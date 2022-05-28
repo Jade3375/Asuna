@@ -4,8 +4,8 @@ module.exports = class extends Command {
     constructor(client) {
         super(client, {
             name: "mem",
-            description: "gets memory ",
-            usage: "mem",
+            description: "Gets current memory usage. [DEVS ONLY]",
+            usage: "%mem",
             aliases: []
         });
     }

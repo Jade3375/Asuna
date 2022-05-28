@@ -6,8 +6,8 @@ class Exec extends Command {
     constructor (client) {
         super(client, {
             name: "exec",
-            description: "exec",
-            usage: "exec",
+            description: "Executes a remote command. [DEVS ONLY]",
+            usage: "%exec [COMMAND]",
             aliases: []
         });
         this.client = client

@@ -5,8 +5,8 @@ class Eval extends Command {
     constructor (client) {
         super(client, {
             name: "eval",
-            description: "OwO vewwy impowtant stuwfs UwU",
-            usage: "eval",
+            description: "Sends eval commands. [DEVS ONLY]",
+            usage: "%eval [COMMAND]",
             aliases: []
         });
         this.client = client

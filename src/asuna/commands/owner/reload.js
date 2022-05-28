@@ -4,8 +4,8 @@ module.exports = class extends Command {
     constructor(client) {
         super(client, {
             name: "reload",
-            description: "relaods all commands",
-            usage: "reload",
+            description: "Reloads all commands and events. [DEVS ONLY]",
+            usage: "%reload",
             aliases: []
         });
         this.client = client
@@ -16,17 +16,17 @@ module.exports = class extends Command {
         if (!owners.includes(message.author.id)) return;
 
         
-        message.channel.createMessage("reloaded commands and events")
+        message.channel.createMessage("Reloaded commands and events successfully.")
         this.client.load.cmds()
         this.client.load.events()
     }
 
     async slash(inter) {
         let owners = ["165811958828761089", "181072300815286275", "431743926974808076"];
-        if (!owners.includes(inter.member.id)) return inter.createMessage("Insufficient Permissions.");
+        if (!owners.includes(inter.member.id)) return inter.createMessage("This is a bot developer only command.");
 
         
-        inter.createMessage("Reloaded commands and events")
+        inter.createMessage("Reloaded commands and events successfully.")
         this.client.load.cmds()
         this.client.load.events()
     }
