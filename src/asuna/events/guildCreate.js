@@ -5,7 +5,8 @@ module.exports = class {
 
     async run (guild) {
         let logC = this.client.getChannel("422805308813869067")
-        logC.createMessage(`[Joined A Server] ${guild.name} with the id \n[${guild.id}]`)
+        //logC.createMessage(`[Joined Guild]\nName: ${guild.name}\nID: ${guild.id}`)
+        logC.createMessage("`[Joined Guild]\nName: ${guild.name}\nID: ${guild.id}`") // Quick test, aka sanity check, will most likely revert in 2 nanoseconds
         this.client.pf.getPrefix(guild.id)
     }
 }

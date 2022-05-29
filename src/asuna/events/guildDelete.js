@@ -5,7 +5,7 @@ module.exports = class {
 
     async run (guild) {
         let logC = this.client.getChannel("422805308813869067")
-        logC.createMessage(`[left A Server] ${guild.name} with the id \n[${guild.id}]`)
+        logC.createMessage(`[Left Guild]\nName: ${guild.name}\nID: ${guild.id}`)
         this.client.pf.removePrefix(guild.id)
     }
 }
