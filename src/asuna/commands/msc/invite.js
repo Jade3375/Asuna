@@ -15,7 +15,7 @@ no
     async run(message, args) {
         let embed = new this.Embed()
         .setTitle("Bot Stats")
-        .setDescription(`Invite me to your server using [this invite!](https://discord.com/oauth2/authorize?client_id=420907324945989632&permissions=2146824183&scope=bot%20applications.commands) \nIf you need help with the bot, join [our support server!](https://discord.gg/uyEQkTT )`)
+        .setDescription(`Invite me to your server using [this invite!](https://discord.com/api/oauth2/authorize?client_id=420907324945989632&permissions=1634234399990&scope=bot) \nIf you need help with the bot, join [our support server!](https://discord.gg/uyEQkTT )`)
         this.client.globalEmbedData(embed)
         
         message.channel.createMessage(embed.build())
@@ -24,7 +24,7 @@ no
     async slash(inter){
         let embed = new this.Embed()
         .setTitle("Bot Stats")
-        .setDescription(`Invite me to your server using [this invite!](https://discord.com/oauth2/authorize?client_id=420907324945989632&permissions=2146824183&scope=bot%20applications.commands) \nIf you need help with the bot, join [our support server!](https://discord.gg/uyEQkTT )`)
+        .setDescription(`Invite me to your server using [this invite!](https://discord.com/api/oauth2/authorize?client_id=420907324945989632&permissions=1634234399990&scope=bot) \nIf you need help with the bot, join [our support server!](https://discord.gg/uyEQkTT )`)
         .setTimestamp()
         
         inter.createMessage(embed.build())
