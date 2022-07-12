@@ -12,7 +12,7 @@ module.exports = class {
 
         let cmd = this.client.commands.get(parsedData.name)
 
-        if(cmd.conf?.nsfw) {
+        if(cmd?.conf?.nsfw) {
             if (await this.client.voteChecker.checkVote(message.author.id) == false) return Interaction.createMessage(`Vote for the bot and use all vote commands for 12 hours https://top.gg/bot/420907324945989632/vote`)
 
             this.runSlash(cmd, Interaction, parsedData)
