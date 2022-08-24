@@ -56,7 +56,6 @@ class Nsfw extends Command {
     
 
     async slash(inter, data) {
-        console.log(data)
         let category = data.value
 
         if (inter.channel.nsfw){
