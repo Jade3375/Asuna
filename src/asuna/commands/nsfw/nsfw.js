@@ -67,8 +67,9 @@ class Nsfw extends Command {
                 .setColor("#FF69B4")
                 .setDescription(`<@${inter.member.id}> enjoy. ${responses[Math.floor(Math.random() * responses.length)]}`)
                 .setImage(json.message)
+                .setFooter("we are aware of interaction failing for seemingly no reason")
                 .setTimestamp()
-                inter.createMessage(embed.build())
+                inter.channel.createMessage(embed.build())
             })
         }else inter.createMessage(":warning: This channel is not marked as NSFW :warning:")
     }
