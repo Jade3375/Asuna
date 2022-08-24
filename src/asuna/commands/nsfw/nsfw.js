@@ -57,6 +57,7 @@ class Nsfw extends Command {
 
     async slash(inter, data) {
         let category = data.value
+        inter.acknowledge()
 
         if (inter.channel.nsfw){
             fetch(`https://nekobot.xyz/api/image?type=${category}`)
@@ -67,11 +68,10 @@ class Nsfw extends Command {
                 .setColor("#FF69B4")
                 .setDescription(`<@${inter.member.id}> enjoy. ${responses[Math.floor(Math.random() * responses.length)]}`)
                 .setImage(json.message)
-                .setFooter("we are aware of interaction failing for seemingly no reason")
                 .setTimestamp()
-                inter.channel.createMessage(embed.build())
+                inter.createFollowup(embed.build())
             })
-        }else inter.createMessage(":warning: This channel is not marked as NSFW :warning:")
+        }else inter.createFollowup(":warning: This channel is not marked as NSFW :warning:")
     }
     }
 
