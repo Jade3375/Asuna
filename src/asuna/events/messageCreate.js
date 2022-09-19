@@ -11,9 +11,9 @@ module.exports = class {
         if (this.client.db.ready == false) return;
         
         if (global.dev)
-            prefix = "a!"
+            prefix = `<@${this.client.user.id}>`
         else
-            prefix = await this.client.pf.getPrefix(message.guildID)
+            prefix = `<@${this.client.user.id}>`
         
         let args = await message.content.slice(prefix.length).trim().split(' ');
         let temp = message.content.trim().split(' ');
