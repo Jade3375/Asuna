@@ -4,7 +4,7 @@ module.exports = class {
     }
 
     async run () {
-        let game = {name:"%help | music overhaul",type:2}
+        let game = {name:"@AsunaHelp | Welcome Messages",type:2}
         this.client.shards.get(0).editStatus("online", game)
     }
 }
