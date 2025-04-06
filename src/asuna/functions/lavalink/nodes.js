@@ -1,5 +1,5 @@
-const ips = process.env.LAVALINK_IPS.split(" ")
-const names = process.env.LAVALINK_NAMES.split(" ")
+const ips = ""
+const names = ""
 const nodes = []
 
 for (let i = 0; i < ips.length; i++) {
