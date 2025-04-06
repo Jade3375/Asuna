@@ -69,7 +69,7 @@ class Help extends Command {
                 .addField("Music", commands.music.join(', '), true)
                 .addField("Fun", commands.fun.join(', '), true)
                 .addField("welcome" , commands.welcomer.join(', '), true)
-                .addField("Links", "<:PPtransparent:457295151396814848>   [Donate](https://www.paypal.me/FloodL) \n:link:   [Invite](https://discord.com/api/oauth2/authorize?client_id=420907324945989632&permissions=1634234399990&scope=bot%20applications.commands) \n:link:   [Support](https://discord.gg/uyEQkTT ) \n:link:   [Vote](https://top.gg/bot/420907324945989632/vote) \n:link: [Guilded](https://www.guilded.gg/i/3kgGxPok)")
+                .addField("Links", ":link:   [Invite](https://discord.com/api/oauth2/authorize?client_id=420907324945989632&permissions=1634234399990&scope=bot%20applications.commands) \n:link:   [Support](https://discord.gg/MegbvVz3Fx )")
                 .setTimestamp()
 
         inter.createMessage(helpembed.build())

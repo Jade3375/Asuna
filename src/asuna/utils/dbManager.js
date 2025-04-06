@@ -12,7 +12,7 @@ class DB {
         this.username = process.env.USR;
         this.password = process.env.DBPWD;
         this.ready = false;
-        this.URI = `mongodb://${this.username ? `${this.username}:${this.password}@` : ''}${this.host}:${this.port}`
+        this.URI = `mongodb://${this.username ? `${this.username}:${this.password}@` : ''}${this.host}:${this.port}/asuna?authSource=asuna`
         this.db = new MongoClient(this.URI, {
             useUnifiedTopology: true
         })

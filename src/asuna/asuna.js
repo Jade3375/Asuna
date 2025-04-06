@@ -40,7 +40,7 @@ class Asuna extends BaseClusterWorker {
     async startBot() {
         this.bot.db.connect()
         this.bot.load = new setup(this.bot)
-        this.bot.lavalink.load()
+        //this.bot.lavalink.load()
         this.bot.editStatus(this.bot.status, this.bot.game)
     }
 }
