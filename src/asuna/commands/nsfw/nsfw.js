@@ -69,9 +69,9 @@ class Nsfw extends Command {
                 .setDescription(`<@${inter.member.id}> enjoy. ${responses[Math.floor(Math.random() * responses.length)]}`)
                 .setImage(json.message)
                 .setTimestamp()
-                inter.createFollowup(embed.build())
+                inter.createMessage(embed.build())
             })
-        }else inter.createFollowup(":warning: This channel is not marked as NSFW :warning:")
+        }else inter.createMessage(":warning: This channel is not marked as NSFW :warning:")
     }
     }
 
