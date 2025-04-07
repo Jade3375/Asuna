@@ -4,7 +4,7 @@
 
 Asuna is an Eris Discord bot with moderation, music and anime at the centre of it.
 
-[![Discord Bots](https://top.gg/api/widget/420907324945989632.svg)(https://top.gg/bot/420907324945989632)]
+[![Discord Bots]](https://top.gg/api/widget/420907324945989632.svg)(https://top.gg/bot/420907324945989632)
 
 ## About this repo
 
